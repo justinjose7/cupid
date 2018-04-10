@@ -5,6 +5,7 @@ import CardStackComponent from './CardStackComponent';
 const LoginComponent = ({
     handleShowSignup,
     handleLogin,
+    handleChange,
     username,
     password,
 }) => (
@@ -18,14 +19,14 @@ const LoginComponent = ({
             type="text" 
             className="login" 
             placeholder="Email or username"
-            value={username}
+            onChange={e => handleChange(e.target.name, e.target.value)}
         />
         <br/>
         <input
             type="password" 
             className="login" 
             placeholder="Password"
-            value={password}
+            onChange={e => handleChange(e.target.name, e.target.value)}
         />
         <br/>
        <br/>
