@@ -1,6 +1,8 @@
 import React from 'react';
 import './LoginComponent.css';
 import CardStackComponent from './CardStackComponent';
+import { Link } from 'react-router-dom';
+import HandleLoginClick from './interface.js';
 
 const LoginComponent = ({
     handleShowSignup,
@@ -14,27 +16,30 @@ const LoginComponent = ({
         <p className= "header-login">Sign in to your account</p>
         <br/>
         <div tabIndex="0" className="form-login" role="document">
-        <form className="form-login">
+        <div className="form-login">
         <input
-            type="text" 
+            type="text"
+            name="username"
             className="login" 
             placeholder="Email or username"
             onChange={e => handleChange(e.target.name, e.target.value)}
+            value={username}
         />
         <br/>
         <input
             type="password" 
+            name="password"
             className="login" 
             placeholder="Password"
             onChange={e => handleChange(e.target.name, e.target.value)}
+            value={password}
         />
         <br/>
        <br/>
         <button
             className="loginBtn"
-            onClick={() => {handleLogin('showMainPage', true)}}
+            onClick={() => {HandleLoginClick(username, password)}}
         >Log in</button>
-
         <br/>
         <p>Don't have an account?</p>
         <button
@@ -43,7 +48,7 @@ const LoginComponent = ({
             onClick={() => { handleShowSignup('showSignup', true);}}
         >Sign up</button>
 
-        </form>
+        </div>
         </div>
     </section>
 );

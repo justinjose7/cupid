@@ -4,13 +4,13 @@ import SignupComponent from './SignupComponent'
 import CardStackComponent from './CardStackComponent'
 import SurveyCardsComponent from './SurveyCardsComponent'
 import './LoginSignupComponent.css'
-
+import HandleClick from './interface.js';
 
 class LoginSignupComponent extends Component {
     constructor(props) {
         super(props);
         this.updateState = this.updateState.bind(this);
-        this.loginAuthCheck = this.loginAuthCheck.bind(this);
+        this.loginAuthCheck = this.loginAuthCheck.bind(this) ;
 
         this.state = {
             showLogin: this.props.showLogin,
@@ -20,9 +20,9 @@ class LoginSignupComponent extends Component {
             username: '',
             password: '',
             new_username: '',
-            new_email: '',
+            email: '',
             new_password: '',
-            new_fullname: '',
+            fullname: '',
         };
 
         
@@ -42,7 +42,6 @@ class LoginSignupComponent extends Component {
                 return (
                     <LoginComponent
                         handleShowSignup={this.updateState}
-                        handleLogin={this.updateState}
                         handleChange={this.updateState}
                         username={this.state.username}
                         password={this.state.password}
@@ -57,8 +56,8 @@ class LoginSignupComponent extends Component {
                         handleChange={this.updateState}
                         new_username={this.state.new_username}
                         new_password={this.state.new_password}
-                        new_fullname={this.state.new_fullname}
-                        new_email={this.state.new_email}
+                        fullname={this.state.fullname}
+                        email={this.state.email}
 
                     />
                 );

@@ -1,54 +1,68 @@
 import React from 'react';
 import './SignupComponent.css'
+import HandleSignupClick from './HandleSignupClick';
+
 
 const SignupComponent = ({
     handleShowLogin,
     handleSignup,
+    handleChange,
     email,
     fullname,
-    username,
-    password,
+    new_username,
+    new_password,
 }) => (
     <section className="box-signup-form">
         <h1 className= "header-title">Cupid</h1>
         <p className= "header-signup">Sign up</p>
         <br/>
         <div tabIndex="0" role="document">
-        <form className="form-signup">
+        <div className="form-signup">
         <input
             type="text" 
+            name="email"
             className="signup" 
             placeholder="Email address"
             value={email}
+            onChange={e => handleChange(e.target.name, e.target.value)}
         />
         <br/>
         <input
             type="text" 
+            name="fullname"
             className="signup" 
             placeholder="Full name"
             value={fullname}
+            onChange={e => handleChange(e.target.name, e.target.value)}
+
         />
         <br/>
         <input
             type="text" 
+            name="new_username"
             className="signup" 
             placeholder="Username"
-            value={username}
+            value={new_username}
+            onChange={e => handleChange(e.target.name, e.target.value)}
+
         />
    
 
         <input
             type="password" 
+            name="new_password"
             className="signup" 
             placeholder="Password"
-            value={password}
+            value={new_password}
+            onChange={e => handleChange(e.target.name, e.target.value)}
+
         />
         <br/>
        <br/>
 
         <button
             className="signup-Btn"
-            onClick={() => { handleSignup('showSurveyPage', true); }}
+            onClick={() => { HandleSignupClick(email, fullname, new_username, new_password)}}
         >Sign up</button>
 
         <br/>
@@ -59,7 +73,7 @@ const SignupComponent = ({
             onClick={() => { handleShowLogin('showSignup', false);}}
         >Log in</button>
 
-        </form>
+        </div>
         </div>
     </section>
 );
