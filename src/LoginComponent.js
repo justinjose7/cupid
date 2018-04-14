@@ -1,8 +1,8 @@
 import React from 'react';
-import './LoginComponent.css';
+import './css/LoginComponent.css';
 import CardStackComponent from './CardStackComponent';
 import { Link } from 'react-router-dom';
-import HandleLoginClick from './interface.js';
+import HandleLoginClick from './HandleLoginClick';
 
 const LoginComponent = ({
     handleShowSignup,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './SurveyCardsComponent.css'
+import './css/SurveyCardsComponent.css'
 
 
 class SurveyCardsComponent extends Component {
@@ -53,7 +53,6 @@ class SurveyCardsComponent extends Component {
     { question: "Are you a night-owl?"},
     ];
 
-    card = ['Jerry', 'John', 'Josh', 'Kate', 'Hudson', 'Jordan'];
     i = 0;
     render() {
         if (this.i != this.cardData.length){
@@ -63,8 +62,8 @@ class SurveyCardsComponent extends Component {
                         <div className="card-top">
                             <div className="text-card-this">{this.cardData[this.state.i].question} </div>
                         </div>
-                        <div className="card-middle">{this.card[this.state.i+1].question}</div>
-                        <div className="card-bottom">{this.card[this.state.i+2].question}</div>
+                        <div className="card-middle">{this.cardData[this.state.i+1].question}</div>
+                        <div className="card-bottom">{this.cardData[this.state.i+2].question}</div>
                         <button className="card-button pass" onClick={() => {this.increment_i()}}>No</button>
                         <button className="card-button like" onClick={() => {this.increment_i()}}>Yes</button>
                     </div>

@@ -3,8 +3,7 @@ import LoginComponent from './LoginComponent'
 import SignupComponent from './SignupComponent'
 import CardStackComponent from './CardStackComponent'
 import SurveyCardsComponent from './SurveyCardsComponent'
-import './LoginSignupComponent.css'
-import HandleClick from './interface.js';
+import './css/LoginSignupComponent.css'
 
 class LoginSignupComponent extends Component {
     constructor(props) {

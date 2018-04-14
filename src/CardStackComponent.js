@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './CardStackComponent.css'
+import './css/CardStackComponent.css'
 
 
 class CardStackComponent extends Component {
@@ -53,7 +53,6 @@ class CardStackComponent extends Component {
     { id: 4, name: 'Brian', age: 30, uri: 'https://engfac.cooper.edu/photos/bailyn.jpg', distance: '6 miles away', description: 'The greatest ever'},
     ];
 
-    card = ['Jerry', 'John', 'Josh', 'Kate', 'Hudson', 'Jordan'];
     i = 0;
     render() {
         if (this.i != this.cardData.length){
@@ -67,8 +66,8 @@ class CardStackComponent extends Component {
                             <div className="text-card"><i>"{this.cardData[this.state.i].description}"</i></div>
                         
                         </div>
-                        <div className="card-middle">{this.card[this.state.i+1].name}</div>
-                        <div className="card-bottom">{this.card[this.state.i+2].name}</div>
+                        <div className="card-middle">{this.cardData[this.state.i+1].name}</div>
+                        <div className="card-bottom">{this.cardData[this.state.i+2].name}</div>
                         <button className="card-button pass" onClick={() => {this.increment_i()}}>Pass</button>
                         <button className="card-button like" onClick={() => {this.increment_i()}}>Like</button>
                     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import './SignupComponent.css'
+import './css/SignupComponent.css'
 import HandleSignupClick from './HandleSignupClick';
 
 
