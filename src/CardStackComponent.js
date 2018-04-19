@@ -42,6 +42,7 @@ class CardStackComponent extends Component {
         if (this.i < this.cardData.length){
             this.i++;
             this.updateState('i', this.i);
+            console.log(this.cardData.length)
         }
 
     }
@@ -66,8 +67,8 @@ class CardStackComponent extends Component {
                             <div className="text-card"><i>"{this.cardData[this.state.i].description}"</i></div>
                         
                         </div>
-                        <div className="card-middle">{this.cardData[this.state.i+1].name}</div>
-                        <div className="card-bottom">{this.cardData[this.state.i+2].name}</div>
+                        <div className="card-middle">{}</div>
+                        <div className="card-bottom">{}</div>
                         <button className="card-button pass" onClick={() => {this.increment_i()}}>Pass</button>
                         <button className="card-button like" onClick={() => {this.increment_i()}}>Like</button>
                     </div>

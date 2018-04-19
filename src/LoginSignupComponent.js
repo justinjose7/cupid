@@ -3,6 +3,7 @@ import LoginComponent from './LoginComponent'
 import SignupComponent from './SignupComponent'
 import CardStackComponent from './CardStackComponent'
 import SurveyCardsComponent from './SurveyCardsComponent'
+import { withRouter } from "react-router-dom";
 import './css/LoginSignupComponent.css'
 
 class LoginSignupComponent extends Component {
@@ -44,6 +45,7 @@ class LoginSignupComponent extends Component {
                         handleChange={this.updateState}
                         username={this.state.username}
                         password={this.state.password}
+                        history={this.props.history}
 
                     />
                 );
@@ -80,4 +82,4 @@ class LoginSignupComponent extends Component {
     }
 }
 
-export default LoginSignupComponent;
+export default withRouter(LoginSignupComponent);

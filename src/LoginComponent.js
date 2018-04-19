@@ -1,8 +1,10 @@
 import React from 'react';
 import './css/LoginComponent.css';
 import CardStackComponent from './CardStackComponent';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import HandleLoginClick from './HandleLoginClick';
+import { withRouter } from "react-router-dom";
+
 
 const LoginComponent = ({
     handleShowSignup,
@@ -10,6 +12,7 @@ const LoginComponent = ({
     handleChange,
     username,
     password,
+    history,
 }) => (
     <section className="box-login-form">
         <h2 className="header-title">Cupid</h2>
@@ -38,7 +41,16 @@ const LoginComponent = ({
        <br/>
         <button
             className="loginBtn"
-            onClick={() => {HandleLoginClick(username, password)}}
+            onClick={() => 
+                {       
+                return HandleLoginClick(username, password)
+                    .then((success) => {
+                        if(success) {
+                            history.push("/matches");
+                        }
+                    });
+                }
+            }
         >Log in</button>
         <br/>
         <p>Don't have an account?</p>
@@ -53,4 +65,4 @@ const LoginComponent = ({
     </section>
 );
 
-export default LoginComponent;
+export default withRouter(LoginComponent);
