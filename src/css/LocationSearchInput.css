@@ -31,6 +31,7 @@
     transform-origin: center;
     font-family: 'Roboto';
     font-size: 15px;
+    z-index: 1;
 }
 
 .suggestion-item {
@@ -45,6 +46,7 @@
   background-color: #389F89;
   border-width: 1px;
   cursor: pointer;
+  z-index: 1;
 }
 
 .suggestion-item--active {

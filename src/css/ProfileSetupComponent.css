@@ -1,8 +1,14 @@
 .profile-img  {
-    width:350px;
-    height: 350px;
+    width:280px;
+    height: 280px;
     z-index: 2;
-    display: inline;	
+    display: inline;
+    	
+}
+
+img {
+	max-width: 100%;
+    max-height: 100%;
 }
 
 .box-profile-form {
@@ -12,7 +18,7 @@
     margin: auto;
     text-align:center;
     width: 350px; 
-    height: 550px;
+    height: 537px;
     background: #FFFFFF;
 }
 
@@ -22,11 +28,13 @@
 	background: white;
 	color: #757575;
 	font: "Roboto";
+	margin: auto auto; 	
+	margin-top: 1em;
 	font-size: 14px;
 	font-weight: bold;
 	text-align: center;
-	width: 350px;
-	height: 350px;
+	width: 280px;
+	height: 280px;
 	position: relative;
 }
 
@@ -53,9 +61,10 @@
 	font-size: 14px;
     background: #FAFAFA;
     color: black;
-    margin: 0.8em 0.25em 0em;
+    margin-top: 1em;
     border: solid #EFEFEF 1px;
     padding: 9px 0 7px 8px;
+    width: 80%;
     outline: none;
     resize:none;
 }
@@ -71,21 +80,22 @@
 }
 
 .completeProfileBtn {
-	position: absolute;	
+	position: relative;	
 	left: 0;
 	right: 0;
 	text-align:center;
 	margin: auto;
+	margin-top: 0.5em;
     font-size: 14px;
     font-weight: 570;
     color: white;
     background: #3897F0;
     border: 0px solid white;
     border-radius: 2px;
-    width: 350px;
+    width: 82%;
     padding: 0.5em 1em;
     box-shadow: 0px 5px 7px -2px rgba(0, 0, 0, 0.4);
-    z-index: -1;
+    z-index: 0;
 }
 
 .completeProfileBtn:focus {

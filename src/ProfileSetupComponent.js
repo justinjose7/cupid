@@ -45,7 +45,9 @@ class ProfileSetupComponent extends Component {
                 multiple={false}
                 accept="image/*"
                 onDrop={this.onImageDrop.bind(this)}>
-                <img classname="profile-img" src={this.state.uploadedFileCloudinaryUrl} alt="Drop an image or click to select a file to upload."/>
+                <div className="profile-img">
+                        <img src={this.state.uploadedFileCloudinaryUrl} alt="Drop an image or click to select a file to upload."/>
+                </div>
             </Dropzone>
             <textarea className="description-box2" rows="3" cols="38" placeholder="Description of yourself" />
             <LocationSearchInput/>
@@ -58,9 +60,10 @@ class ProfileSetupComponent extends Component {
                 //value={password}
             />
             <br/>
+            <button className="completeProfileBtn">Profile Complete</button>
+
         </div>
         <br/>
-        <button className="completeProfileBtn">Profile Complete</button>
         <br/>
         <br/>
         </div>
