@@ -61,6 +61,8 @@ class ProfileSetupComponent extends Component {
         </div>
         <br/>
         <button className="completeProfileBtn">Profile Complete</button>
+        <br/>
+        <br/>
         </div>
     )}
 }
