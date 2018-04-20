@@ -46,7 +46,7 @@ class ProfileSetupComponent extends Component {
                 accept="image/*"
                 onDrop={this.onImageDrop.bind(this)}>
                 <div className="profile-img">
-                        <img src={this.state.uploadedFileCloudinaryUrl} alt="Drop an image or click to select a file to upload."/>
+                        <img src={this.state.uploadedFileCloudinaryUrl} alt="Drop an image or click to select a file to upload." onError={(e)=>{e.target.src="https://res.cloudinary.com/dbormtzbg/image/upload/v1524203791/uploadPlaceholder.jpg"}}/>
                 </div>
             </Dropzone>
             <textarea className="description-box2" rows="3" cols="38" placeholder="Description of yourself" />
