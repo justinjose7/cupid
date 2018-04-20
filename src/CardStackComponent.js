@@ -50,7 +50,7 @@ class CardStackComponent extends Component {
     cardData = [
     { id: 1, name: 'Fred', age: 21, uri: 'https://cooper.edu/sites/default/files/fontaine1.jpg', distance: '5 miles away', description: 'Gaussian random variable'},
     { id: 2, name: 'Sam', age: 27, uri: 'http://cooper.edu/sites/default/files/keene1.jpg', distance: '10 miles away', description: 'Chill out...Easy right?' },
-    { id: 3, name: 'Carl', age: 28, uri: 'https://cooper.edu/sites/default/files/sable1.jpg', distance: '3 miles away', description: 'Monkeys like bananas'},
+    { id: 3, name: 'Carl', age: 28, uri: 'https://res.cloudinary.com/dbormtzbg/image/upload/v1524193299/dskvjqgqigv8smdthp1g.jpg', distance: '3 miles away', description: 'Monkeys like bananas'},
     { id: 4, name: 'Brian', age: 30, uri: 'https://engfac.cooper.edu/photos/bailyn.jpg', distance: '6 miles away', description: 'The greatest ever'},
     ];
 

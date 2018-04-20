@@ -52,7 +52,7 @@ class ProfileSetupComponent extends Component {
             <textarea className="description-box2" rows="3" cols="38" placeholder="Description of yourself" />
             <LocationSearchInput/>
             <input
-                type="text" 
+                type="number" 
                 name="description"
                 className="input-box" 
                 placeholder="Maximum distance for matches (in miles)"
