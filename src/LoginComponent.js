@@ -4,6 +4,8 @@ import CardStackComponent from './CardStackComponent';
 import { Link, Redirect } from 'react-router-dom';
 import HandleLoginClick from './HandleLoginClick';
 import { withRouter } from "react-router-dom";
+import LocationSearchInput from './LocationSearchInput'
+
 
 
 const LoginComponent = ({

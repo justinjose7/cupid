@@ -1,0 +1,64 @@
+.search-input-form {
+    border: 0;
+    -webkit-box-flex: 1;
+    font-size: 14px;
+    width: 80%;
+    background: #FAFAFA;
+    color: black;
+    text-indent: 0px;
+    display: inline-block;
+    text-align: start;
+    margin: 0.5em auto;
+    border: solid #EFEFEF 1px;
+    padding: 9px 0 7px 8px;
+    transform-origin: center;
+    outline: none;
+}
+
+.search-input-form:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(0,162,241,0.25);
+    box-shadow: 0 0 0 0.2rem rgba(0,162,241,0.25);
+
+}
+
+.autocomplete-container {
+    width: 252px;
+    font-size: 14px;
+    margin: 0.0em auto;
+    text-align: center;
+    color: black !important;
+    position: absolute;
+    transform-origin: center;
+    font-family: 'Roboto';
+    font-size: 15px;
+}
+
+.suggestion-item {
+  position: relative;
+  left: 26px;
+  width: 295px;
+  padding: 0px;
+  margin: 0px;
+  border: solid #E6E6E6 1px;
+  border-top: 0px;
+  text-align: center;
+  background-color: #389F89;
+  border-width: 1px;
+  cursor: pointer;
+}
+
+.suggestion-item--active {
+  position: relative;
+  left: 10px;
+  width: 330px;
+  background-color: #fafafa;
+  color: #3897F2;
+  padding: 0px;
+  margin: auto;
+  border: solid #E6E6E6 1px;
+  border-top: 0px;
+  text-align: center;
+  background-color: #389F89;
+  border-width: 1px;
+  cursor: pointer;
+}
