@@ -1,0 +1,25 @@
+.nav-ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #FAFAFA;
+}
+
+
+.nav-li {
+    float: left;
+}
+
+.nav-li {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.nav-li:hover {
+    background-color: #FAFAFA;
+    cursor: pointer;
+}
