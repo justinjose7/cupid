@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {update} from '../../redux/user.redux'
+import { Toast } from 'antd-mobile'
 
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
@@ -38,8 +39,12 @@ class StudentInfo extends React.Component{
         let upload = request.post(CLOUDINARY_UPLOAD_URL)
             .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
             .field('file', file);
+        Toast.loading('',0)
 
         upload.end((err, response) => {
+            setTimeout(() => {
+              Toast.hide()
+              }, 500)
             if (err) {
                 console.error(err);
             }

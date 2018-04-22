@@ -3,7 +3,7 @@ import { Toast } from 'antd-mobile'
 
 //block request
 axios.interceptors.request.use(function (config) {
-    Toast.loading('loading',0)
+    Toast.loading('',0)
     return config
 })
 
