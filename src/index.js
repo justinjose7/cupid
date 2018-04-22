@@ -20,6 +20,7 @@ import ProfessorInfo from './container/professorinfo/professorinfo'
 import StudentInfo from './container/studentinfo/studentinfo'
 import Dashboard from './component/dashboard/dashboard'
 import Chat from './component/chat/chat'
+import SurveyCards from './container/survey/surveyCards'
 import './index.css'
 
 const store = createStore(reducers,compose(
@@ -37,6 +38,7 @@ const store = createStore(reducers,compose(
             <div>
                 <AuthRoute></AuthRoute>
                 <Switch>
+                    <Route path='/survey' component={SurveyCards}></Route>
                     <Route path='/studentinfo' component={StudentInfo}></Route>
                     <Route path='/professorinfo' component={ProfessorInfo}></Route>
                     <Route path='/login' component={Login}></Route>

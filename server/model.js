@@ -17,6 +17,15 @@ const models = {
             'lat': {'type': Number},
             'lng': {'type': Number}
         },
+        'interests':{
+            'sports': {'type': Boolean},
+            'politics': {'type': Boolean},
+            'food': {'type': Boolean},
+            'popmusic': {'type': Boolean},
+            'rap': {'type': Boolean},
+            'religion': {'type': Boolean},
+        },
+        'surveyComplete':{'type':Boolean},
         'uri':{'type':String},
         'avatar':{'type':String},
         'desc':{'type':String},
