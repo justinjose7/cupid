@@ -1,7 +1,3 @@
-/**
-/**
- * scott Zhekai Jin
- */
 const express = require('express')
 const utils = require('utility')  //md5
 const Router = express.Router()
@@ -12,7 +8,6 @@ const _filter = {'pwd':0,'__v':0}
 
 Router.get('/list', function (req,res) {
     const { type } = req.query
-    //User.remove({}, function (e,d) {}) run this to remove all user list s
     User.find({type},function(err,doc){
         return res.json({code:0,data:doc})
     })
@@ -20,7 +15,6 @@ Router.get('/list', function (req,res) {
 
 Router.get('/getmsglist', function (req,res) {
     const user = req.cookies.user
-    //{'$or':[{from:user,to:user}]}
     User.find({}, function (e,userDoc) {
         let users = {}
         console.log(userDoc)
@@ -33,10 +27,7 @@ Router.get('/getmsglist', function (req,res) {
                 return res.json({code:0,msgs:doc,users:users})
             }
         })
-      /*  exployee.find({}).populate.exec(function () {
-        })*/
     })
-
 })
 
 
@@ -86,7 +77,7 @@ Router.post('/register',function(req,res){
 })
 
 Router.get('/info',function(req,res){
-    const {userid} = req.cookies    
+    const {userid} = req.cookies
     if (!userid) {
         return res.json({code:1})
     }

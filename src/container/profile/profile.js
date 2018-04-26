@@ -15,16 +15,12 @@ const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbormtzbg/image/u
   state=>state.user,
 	{update}
 )
-class StudentInfo extends React.Component{
+class Profile extends React.Component{
     constructor(props) {
       super(props)
       this.state = {
         avatar: '',
-        title:'',
         desc:'',
-        uri: '',
-        Department:'',
-        number:'',
         maxdist:'',
         latLng: '',
       }
@@ -54,7 +50,7 @@ class StudentInfo extends React.Component{
             }
         });
     }
-    
+
     handleChange(key,val){
   		this.setState({
   			[key]:val
@@ -72,7 +68,7 @@ class StudentInfo extends React.Component{
       const redirect = this.props.redirectTo
       return (
         <div>
-          {redirect && redirect!== path ? <Redirect to={this.props.redirectTo}></Redirect> :null}
+          {redirect && redirect!== path ? <Redirect to={'/survey'}></Redirect> :null}
             <div className='box-profile-form'>
                 <Dropzone
                     className='drop-box'
@@ -83,16 +79,16 @@ class StudentInfo extends React.Component{
                             <img src={this.state.avatar} onError={(e)=>{e.target.src="http://res.cloudinary.com/dbormtzbg/image/upload/v1524204692/uploadPlaceholder.jpg"}}/>
                     </div>
                 </Dropzone>
-                <textarea 
-                  className="description-box2" 
-                  rows="3" cols="38" 
-                  onChange={(e) => this.handleChange('desc', e.target.value)} 
+                <textarea
+                  className="description-box2"
+                  rows="3" cols="38"
+                  onChange={(e) => this.handleChange('desc', e.target.value)}
                   placeholder="Description of yourself" />
                 <LocationSearchInput callBackGetLatLng={ this.handleLatLngVal }/>
                 <input
-                    type="number" 
+                    type="number"
                     name="description"
-                    className="input-box" 
+                    className="input-box"
                     placeholder="Maximum distance for matches (in miles)"
                     onChange={e => this.handleChange('maxdist', e.target.value)}
                 />
@@ -108,4 +104,4 @@ class StudentInfo extends React.Component{
     }
 }
 
-export default StudentInfo
+export default Profile

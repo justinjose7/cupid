@@ -1,9 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Result,List,Brief,WhiteSpace,Modal} from 'antd-mobile'
+import {List, Modal} from 'antd-mobile'
 import browserCookies from 'browser-cookies'
 import {logoutSubmit} from '../../redux/user.redux'
 import {Redirect} from 'react-router-dom'
+import '../../css/my-profile.css'
 @connect(
     state=>state.user,
     {logoutSubmit}
@@ -19,9 +20,9 @@ class User extends React.Component{
     logout() {
 
         const alert = Modal.alert
-        alert('Logout', 'Do you really want to quit???', [
-            { text: 'cancel', onPress: () => console.log('cancel') },
-            { text: 'confirm', onPress: () => {
+        alert('Sign out', 'Are you sure?', [
+            { text: 'Cancel', onPress: () => console.log('cancel') },
+            { text: 'Log out', onPress: () => {
                 browserCookies.erase('userid')
                 this.props.logoutSubmit()
             }},
@@ -34,18 +35,16 @@ class User extends React.Component{
     render() {
         const props = this.props
         console.log(props)
-        const Item = List.Item
-        const Brief = Item.Brief
         return props.user?(
-                <div>
-                    <img src={props.avatar} alt=""/>}
-                    <p>{props.name}</p>
-                    <p>{props.desc}</p>
-                    <p>{props.maxdist}</p>
+                <div className="stack-container">
+                    <div className="card-top">
+                        <div className="img-card"><img className="img" src={props.avatar} /></div>
+                        <div className="name-header-card" ><b>{props.name}</b></div>
+                        <div className="text-card"><i>"{props.desc}"</i></div>
+                        <br/>
+                        <button className="signout-Btn" onClick={this.logout}>Sign out</button>
 
-                    <List>
-                        <Item onClick={this.logout}>Logout</Item>
-                    </List>
+                    </div>
                 </div>
         ):<Redirect to={props.redirectTo}/>
     }

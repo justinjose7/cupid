@@ -12,7 +12,7 @@ body {
     background-color: #FFF;
 }
 
-#nav-item, #nav-item-other { 
+#nav-item, #nav-item-other {
     float: left;
     display: block;
     font-family: 'Kaushan Script', cursive;
@@ -25,7 +25,7 @@ body {
     cursor: pointer;
 }
 
-#nav-item-other { 
+#nav-item-other {
     float: right;
     color: #D83F87;
     font-weight: 400;

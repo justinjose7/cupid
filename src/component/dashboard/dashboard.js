@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {NavBar} from 'antd-mobile'
 import NavLinkBar from '../navlink/navlink'
 import {Switch,Route} from 'react-router-dom'
-import Professor from '../../component/professor/professor'
 import Student from '../../component/student/student'
 import User from '../../component/user/user'
 import {getMsgList,recvMsg} from '../../redux/chat.redux'
@@ -35,15 +34,7 @@ class Dashboard extends React.Component {
         console.log(JSON.stringify(this.props))
         const navList = [
             {
-                path:'/professor',
-                text:'Potential Professors',
-                icon:'boss',
-                title:'Student List',
-                component:Professor,
-                hide:user.type=='student'
-            },
-            {
-                path:'/student',
+                path:'/home',
                 text:'Potential Students',
                 icon:'job',
                 title:'Professor List',
@@ -54,11 +45,11 @@ class Dashboard extends React.Component {
                 path:'/msg',
                 text:'Chats',
                 icon:'msg',
-                title:'Messege list',
+                title:'Messages',
                 component:Msg
             },
             {
-                path:'/me',
+                path:'/myprofile',
                 text:'My Profile',
                 icon:'user',
                 title:'Personal Center',

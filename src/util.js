@@ -1,9 +1,11 @@
-export function getRedirectPath({type,avatar}){
-    //user.type /boss /genius
-    // user.avatar /bossinfo  /geniusinfo
-	let url = (type==='professor')?'/professor': '/student'
+export function getRedirectPath({type,avatar,surveyComplete}){
+
+	let url = '/home'
+		if (surveyComplete == false){
+			url = '/survey'
+		}
     if (!avatar) {
-        url += 'info'
+			url = '/profile'
     }
     return url
 }

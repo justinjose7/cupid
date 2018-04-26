@@ -1,6 +1,4 @@
 import React from 'react'
-import Logo from '../../component/logo/logo'
-import {List, InputItem, WingBlank, WhiteSpace, Button} from 'antd-mobile'
 import { connect } from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {login} from '../../redux/user.redux'
@@ -46,15 +44,15 @@ class Login extends React.Component{
 					        <input
 					            type="text"
 					            name="user"
-					            className="login" 
+					            className="login"
 					            placeholder="Email or username"
 					            onChange={e => this.handleChange(e.target.name, e.target.value)}
 					        />
 					        <br/>
 					        <input
-					            type="password" 
+					            type="password"
 					            name="pwd"
-					            className="login" 
+					            className="login"
 					            placeholder="Password"
 					            onChange={e => this.handleChange(e.target.name, e.target.value)}
 					        />

@@ -1,6 +1,3 @@
-/**
- * scott Zhekai Jin
- */
 const mongoose = require('mongoose')
 const DB_URL = 'mongodb://cooper:58OfWT!@ds239439.mlab.com:39439/cupid'
 mongoose.connect(DB_URL)
@@ -26,13 +23,8 @@ const models = {
             'religion': {'type': Boolean},
         },
         'surveyComplete':{'type':Boolean},
-        'uri':{'type':String},
         'avatar':{'type':String},
         'desc':{'type':String},
-        'title':{'type':String},
-        // if you are a professor
-        'Department':{'type':String},
-        'number':{'type':String}
     },
     chat:{
         'chatid':{'type':String,'require':true},

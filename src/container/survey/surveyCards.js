@@ -17,6 +17,7 @@ class SurveyCards extends Component {
         this.like = this.like.bind(this);
         this.reject = this.reject.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.surveyFinished = this.surveyFinished.bind(this);
         this.state = {
             i: 0,
             interests: {
@@ -31,9 +32,9 @@ class SurveyCards extends Component {
             surveyComplete: false,
         };
 
-        
+
     };
-    
+
     componentDidMount() {
         window.addEventListener("keydown", this.handleKeyPress);
     };
@@ -50,12 +51,12 @@ class SurveyCards extends Component {
                 break;
             default:
                 break;
-        }   
+        }
     };
-    
+
     reject(){
         this.setState({ interests: {...this.state.interests, [this.state.currentInterest]: false}});
-        Toast.info('Pass', 0.7);
+        Toast.info('No', 0.7);
 
 
         if (this.i < this.cardData.length){
@@ -65,12 +66,19 @@ class SurveyCards extends Component {
 
         console.log(this.state.interests)
         if (this.i < this.cardData.length)
-            this.updateState('currentInterest', this.cardData[this.state.i].interest)
+          this.updateState('currentInterest', this.cardData[this.state.i].interest)
+
+          if (this.i == this.cardData.length){
+            this.setState({surveyComplete: true});
+          }
+          else {
+            this.setState({surveyComplete: true});
+          }
     }
 
     like(interest){
         this.setState({ interests: {...this.state.interests, [this.state.currentInterest]: true}});
-        Toast.info('Like', 0.5);
+        Toast.info('Yes', 0.5);
 
 
         if (this.i < this.cardData.length){
@@ -79,19 +87,18 @@ class SurveyCards extends Component {
         }
 
         console.log(this.state.interests)
-        if (this.i < this.cardData.length)
-            this.updateState('currentInterest', this.cardData[this.state.i].interest)
+        if (this.i < this.cardData.length){
+          this.updateState('currentInterest', this.cardData[this.state.i].interest)
+        }
+        else {
+          this.setState({surveyComplete: true});
+        }
     }
 
     updateState(key, value) {
         this.setState({ [key]: value});
     };
-    
 
-    handleClick() {
-        
-
-    }
 
     cardData = [
     { interest: 'sports', question: "Do you enjoy sports?"},
@@ -101,10 +108,15 @@ class SurveyCards extends Component {
     ];
 
     i = 0;
+
+    surveyFinished(){
+      this.props.update(this.state)
+
+    }
     render() {
         if (this.i != this.cardData.length){
             return (
-                <div> 
+                <div>
                     <div className="stack-container">
                         <div className="card-top">
                             <div className="text-card-this">{this.cardData[this.state.i].question} </div>
@@ -119,8 +131,8 @@ class SurveyCards extends Component {
         }
         return (
             <div>
-                    <div className="nothing-left" {...this.props.update(this.state)}>No more cards left</div>
-                    <Redirect to='/student' />
+                    <div className="nothing-left" {...this.surveyFinished()}>No more cards left</div>
+                    <Redirect to='/home' />
             </div>
 
             );

@@ -23,7 +23,7 @@ export function user(state=initState,action) {
         case ERROR_MSG:
             return {...state,isAuth:false,msg:action.msg}
         case LOGOUT:
-            return {...initState,redirectTo:'/login'}
+            return {...initState, redirectTo:'/login'}
         default:
             return state
     }
@@ -69,6 +69,7 @@ export function login({user,pwd}) {
             .then(res => {
                 if(res.status == 200 && res.data.code === 0) {
                     dispatch(authSuccess(res.data.data))
+                    console.log('hello' + res.data.data)
                 }else {
                     dispatch(errorMsg(res.data.msg))
                 }
