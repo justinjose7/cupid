@@ -1,1 +1,1 @@
-react redux express node socket.io chat app
+A tinder of sorts built using React, Redux, MongoDB, etc.

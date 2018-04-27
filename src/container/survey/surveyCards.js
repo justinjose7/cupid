@@ -110,6 +110,7 @@ class SurveyCards extends Component {
     i = 0;
 
     surveyFinished(){
+      window.removeEventListener("keydown", this.handleKeyPress);
       this.props.update(this.state)
 
     }
