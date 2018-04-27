@@ -48,7 +48,7 @@ Router.post('/update',function(req,res){
 
 Router.post('/login',function(req,res){
     const {user,pwd} = req.body
-    User.findOne({user,pwd:md5Pwd(pwd)},_filter,function(err,doc){
+    User.findOne({$or: [{user:user,pwd:md5Pwd(pwd)}, {email:user,pwd:md5Pwd(pwd)}]},_filter,function(err,doc){
         if(!doc) {
             return res.json({code:1,msg:'Check if username and password are correct'})
         }
@@ -59,10 +59,10 @@ Router.post('/login',function(req,res){
 
 Router.post('/register',function(req,res){
     const {email, user, name, pwd, type} = req.body
-    User.findOne({user},function(err,doc){
+    User.findOne({$or: [{user:user}, {email: email}]},function(err,doc){
 
         if(doc) {
-            return res.json({code:1,msg:'Username already exists',doc:doc})
+            return res.json({code:1,msg:'Username or email already exists',doc:doc})
         }
         const userModel = new User({email, user, name, type, pwd:md5Pwd(pwd)})
         userModel.save(function(e,d){

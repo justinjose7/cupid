@@ -20,6 +20,7 @@ import Profile from './container/profile/profile'
 import Dashboard from './component/dashboard/dashboard'
 import Chat from './component/chat/chat'
 import SurveyCards from './container/survey/surveyCards'
+import { slide as Menu } from 'react-burger-menu'
 import './index.css'
 
 const store = createStore(reducers,compose(
@@ -27,8 +28,7 @@ const store = createStore(reducers,compose(
     window.devToolsExtension?window.devToolsExtension():f=>f
 ))
 
-
-    ReactDom.render(
+ReactDom.render(
     /*Login AUTH*/
     (<Provider store={store}>
         <BrowserRouter>
@@ -46,4 +46,14 @@ const store = createStore(reducers,compose(
         </BrowserRouter>
     </Provider>),
     document.getElementById('root')
+)
+
+ReactDom.render(
+    (<Menu right>
+      <a id="home" className="menu-item" href="/">Home</a>
+      <a id="matches" className="menu-item" href="/mat">About</a>
+      <a id="profile" className="menu-item" href="/myprofile">My Profile</a>
+      <a id="settings" className="menu-item" href="/profile">Settings</a>
+
+      </Menu>), document.getElementById('hamburger-menu')
 )

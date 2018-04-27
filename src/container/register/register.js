@@ -33,9 +33,12 @@ class Register extends React.Component{
 		this.props.history.push('/login') //cookiesave
 	}
 	render(){
+		var currentLocation = this.props.location.pathname
+		console.log(currentLocation);
+		console.log(this.props.redirectTo);
 		return (
 			<div>
-				{this.props.redirectTo? <Redirect to={this.props.redirectTo} />:null}
+				{((this.props.redirectTo) && (this.props.redirectTo != '/login'))? <Redirect to={this.props.redirectTo} />:null}
 				<section className="box-signup-form">
 					<h1 className= "header-title">Cupid</h1>
 					<p className= "header-signup">Sign up</p>

@@ -7,7 +7,7 @@ import Student from '../../component/student/student'
 import User from '../../component/user/user'
 import {getMsgList,recvMsg} from '../../redux/chat.redux'
 function Msg() {
-    return <h2>Messege List</h2>
+    return <h2>Matches</h2>
 }
 
 @connect(
@@ -35,17 +35,17 @@ class Dashboard extends React.Component {
         const navList = [
             {
                 path:'/home',
-                text:'Potential Students',
+                text:'People Nearby',
                 icon:'job',
-                title:'Professor List',
+                title:'People Nearby',
                 component:Student,
                 hide:user.type=='professor'
             },
             {
-                path:'/msg',
-                text:'Chats',
+                path:'/matches',
+                text:'Matches',
                 icon:'msg',
-                title:'Messages',
+                title:'Matches',
                 component:Msg
             },
             {
@@ -59,17 +59,15 @@ class Dashboard extends React.Component {
 
         return (
             <div>
-                <div style={{marginTop:45}}>
-                    <Switch>
-                        {navList.map(v=>(
-                            <Route key={v.path} path={v.path} component={v.component}></Route>
-                        ))}
-                    </Switch>
-                </div>
+                <Switch>
+                    {navList.map(v=>(
+                        <Route key={v.path} path={v.path} component={v.component}></Route>
+                    ))}
+                </Switch>
                 <NavLinkBar data={navList}></NavLinkBar>
 
-
             </div>
+
         )
     }
 }

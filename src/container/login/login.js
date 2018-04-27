@@ -19,9 +19,11 @@ class Login extends React.Component{
 		this.register = this.register.bind(this)
 		this.handleLogin = this.handleLogin.bind(this)
 	}
+
 	register(){
 		this.props.history.push('/register') //cookiesave
 	}
+
 	handleChange(key,val){
 		this.setState({
 			[key]:val

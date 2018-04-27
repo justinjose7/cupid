@@ -76,7 +76,7 @@ class SurveyCards extends Component {
           }
     }
 
-    like(interest){
+    like(){
         this.setState({ interests: {...this.state.interests, [this.state.currentInterest]: true}});
         Toast.info('Yes', 0.5);
 
