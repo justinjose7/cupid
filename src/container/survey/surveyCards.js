@@ -132,7 +132,7 @@ class SurveyCards extends Component {
         return (
             <div>
                     <div className="nothing-left" {...this.surveyFinished()}>No more cards left</div>
-                    <Redirect to='/home' />
+                    <Redirect to='/nearby' />
             </div>
 
             );

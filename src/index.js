@@ -50,10 +50,11 @@ ReactDom.render(
 
 ReactDom.render(
     (<Menu right>
-      <a id="home" className="menu-item" href="/">Home</a>
-      <a id="matches" className="menu-item" href="/mat">About</a>
+      <a id="home" className="menu-item" href="/nearby">People Nearby</a>
+      <a id="matches" className="menu-item" href="/matches">Matches</a>
       <a id="profile" className="menu-item" href="/myprofile">My Profile</a>
-      <a id="settings" className="menu-item" href="/profile">Settings</a>
+      <a id="settings" className="menu-item" href="/profile">Update Profile</a>
+
 
       </Menu>), document.getElementById('hamburger-menu')
 )

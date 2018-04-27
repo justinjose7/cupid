@@ -1,6 +1,6 @@
 export function getRedirectPath({type,avatar,surveyComplete}){
 
-	let url = '/home'
+	let url = '/nearby'
 		if (surveyComplete == false){
 			url = '/survey'
 		}

@@ -63,9 +63,17 @@ body {
   width: 24px;
 }
 
+.bm-cross-button:hover {
+  color: #D83F87
+}
+
 /* Color/shape of close button cross */
 .bm-cross {
   background: #bdc3c7;
+}
+
+.bm-cross:hover {
+  background: #D83F87;
 }
 
 /* General sidebar styles */
@@ -90,6 +98,10 @@ body {
   color: black;
   font-family: 'Roboto';
   padding: 10px;
+}
+
+.menu-item:hover {
+  color: #D83F87;
 }
 
 /* Styling of overlay */

@@ -5,6 +5,7 @@ import NavLinkBar from '../navlink/navlink'
 import {Switch,Route} from 'react-router-dom'
 import Student from '../../component/student/student'
 import User from '../../component/user/user'
+import MatchCards from '../match-cards/match-cards'
 import {getMsgList,recvMsg} from '../../redux/chat.redux'
 function Msg() {
     return <h2>Matches</h2>
@@ -34,11 +35,11 @@ class Dashboard extends React.Component {
         console.log(JSON.stringify(this.props))
         const navList = [
             {
-                path:'/home',
+                path:'/nearby',
                 text:'People Nearby',
                 icon:'job',
                 title:'People Nearby',
-                component:Student,
+                component:MatchCards,
                 hide:user.type=='professor'
             },
             {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './css/CardStackComponent.css'
+import '../../css/match-cards.css'
 
 
-class CardStackComponent extends Component {
+class MatchCards extends Component {
     constructor(props) {
         super(props);
         this.updateState = this.updateState.bind(this);
@@ -12,9 +12,9 @@ class CardStackComponent extends Component {
             i: 0,
         };
 
-        
+
     };
-    
+
     componentDidMount() {
         window.addEventListener("keydown", this.handleKeyPress);
     };
@@ -31,13 +31,13 @@ class CardStackComponent extends Component {
                 break;
             default:
                 break;
-        }   
+        }
     };
-        
+
     updateState(key, value) {
         this.setState({ [key]: value});
     };
-    
+
     increment_i() {
         if (this.i < this.cardData.length){
             this.i++;
@@ -58,14 +58,14 @@ class CardStackComponent extends Component {
     render() {
         if (this.i != this.cardData.length){
             return (
-                <div> 
+                <div>
                     <div className="stack-container">
                         <div className="card-top">
                             <div className="img-card"><img className="img" src={this.cardData[this.state.i].uri} /></div>
                             <div className="name-header-card" ><b>{this.cardData[this.state.i].name}</b>, {this.cardData[this.state.i].age}</div>
                             <div className="text-card">{this.cardData[this.state.i].distance} </div>
                             <div className="text-card"><i>"{this.cardData[this.state.i].description}"</i></div>
-                        
+
                         </div>
                         <div className="card-middle">{}</div>
                         <div className="card-bottom">{}</div>
@@ -81,4 +81,4 @@ class CardStackComponent extends Component {
     }
 }
 
-export default CardStackComponent;
+export default MatchCards;
