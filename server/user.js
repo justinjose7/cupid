@@ -46,17 +46,29 @@ Router.post('/matchUser', function(req, res) {
 		return User.find({}, function(err, users) {
 			// this is the user object with matches
 			const matchedUser = matchUser_toUsers(user, users);
-			const matches = _.get(matchedUser, "matches");
+
+			// this is the list of match objects, which look like:
+			//   {
+			//       "user": "username"
+			//       , "dist": 60 // sample distance in miles
+			//   }
+			const matchedObjects = _.get(matchedUser, "matches");
+			const matches = _.map(matchedObject, obj => _.get(obj, "user"));
 
 			// transform user array into users object; has all matched users
 			const usersObject = _.reduce(users, (usrObj, usr) => {
+				// get the index of matched user
+				const idx = _.indexOf(matches, _.get(usr, "user"));
+
 				// if the user is a "matched" user, add them
-				if(_.indexOf(matches, _.get(usr, "user")) < 0) {
+				if(idx < 0) {
 					return usrObj;
 				}
 
 				// if the user is "matched", add them
-				return _.assign({}, usrObj, { [_.get(usr, "user")]: usr });
+				return _.assign({}, usrObj, {
+					[_.get(usr, "user")]: _.assign({}, usr, { "dist": _.get(matchedObjects[idx], "dist") })
+				});
 			}, {});
 
 			// get the relevant information
@@ -65,7 +77,7 @@ Router.post('/matchUser', function(req, res) {
 					  "_id": _.get(usr, "_id")
 					, "name": _.get(usr, "name")
 					, "avatar": _.get(usr, "avatar")
-					, "distance": _.get(usr, "distance")
+					, "dist": _.get(usr, "dist")
 					, "desc": _.get(usr, "desc")
 				});
 			}
