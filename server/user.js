@@ -48,7 +48,7 @@ Router.post('/matchUser', function(req, res) {
 			const matchedUser = matchUser_toUsers(user, users);
 			const matches = _.get(matchedUser, "matches");
 
-			// transform user array into users object; has all users
+			// transform user array into users object; has all matched users
 			const usersObject = _.reduce(users, (usrObj, usr) => {
 				// if the user is a "matched" user, add them
 				if(_.indexOf(matches, _.get(usr, "user")) < 0) {
