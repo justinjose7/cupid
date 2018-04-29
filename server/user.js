@@ -6,6 +6,10 @@ const User = model.getModel('user')
 const Chat = model.getModel('chat')
 const _filter = {'pwd':0,'__v':0}
 
+// include the user matching function
+const { matchUser_toUsers } = require("match");
+const _ = require("lodash");
+
 Router.get('/list', function (req,res) {
     const { type } = req.query
     User.find({type},function(err,doc){
@@ -30,6 +34,47 @@ Router.get('/getmsglist', function (req,res) {
     })
 })
 
+
+Router.post('/matchUser', function(req, res) {
+	// this body should look something like this:
+	// {
+	//	"user": "username"
+	// }
+	const body = req.body;
+	
+	User.findOne(body, function(err, user) {
+		return User.find({}, function(err, users) {
+			// this is the user object with matches
+			const matchedUser = matchUser_toUsers(user, users);
+			const matches = _.get(matchedUser, "matches");
+
+			// transform user array into users object; has all users
+			const usersObject = _.reduce(users, (usrObj, usr) => {
+				// if the user is a "matched" user, add them
+				if(_.indexOf(matches, _.get(usr, "user")) < 0) {
+					return usrObj;
+				}
+
+				// if the user is "matched", add them
+				return _.assign({}, usrObj, { [_.get(usr, "user")]: usr });
+			}, {});
+
+			// get the relevant information
+			const relevantUsers = _.mapValues(usersObject, usr => {
+				return _.assign({}, {
+					  "_id": _.get(usr, "_id")
+					, "name": _.get(usr, "name")
+					, "avatar": _.get(usr, "avatar")
+					, "distance": _.get(usr, "distance")
+					, "desc": _.get(usr, "desc")
+				});
+			}
+			
+			// SEND IT BABY
+			return res.json(relevantUsers);
+		});
+	});
+});
 
 Router.post('/update',function(req,res){
     const userid = req.cookies.userid
