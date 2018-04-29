@@ -34,7 +34,6 @@ Router.get('/getmsglist', function (req,res) {
     })
 })
 
-
 Router.post('/matchUser', function(req, res) {
 	// this body should look something like this:
 	// {
@@ -53,7 +52,7 @@ Router.post('/matchUser', function(req, res) {
 			//       , "dist": 60 // sample distance in miles
 			//   }
 			const matchedObjects = _.get(matchedUser, "matches");
-			const matches = _.map(matchedObject, obj => _.get(obj, "user"));
+			const matches = _.map(matchedObjects, obj => _.get(obj, "user"));
 
 			// transform user array into users object; has all matched users
 			const usersObject = _.reduce(users, (usrObj, usr) => {
@@ -64,7 +63,7 @@ Router.post('/matchUser', function(req, res) {
 				if(idx < 0) {
 					return usrObj;
 				}
-
+				
 				// if the user is "matched", add them
 				return _.assign({}, usrObj, {
 					[_.get(usr, "user")]: _.assign({}, usr, { "dist": _.get(matchedObjects[idx], "dist") })
