@@ -7,7 +7,7 @@ const Chat = model.getModel('chat')
 const _filter = {'pwd':0,'__v':0}
 
 // include the user matching function
-const { matchUser_toUsers } = require("match");
+const { matchUser_toUsers } = require("../local_modules/match");
 const _ = require("lodash");
 
 Router.get('/list', function (req,res) {
@@ -41,34 +41,22 @@ Router.post('/matchUser', function(req, res) {
 	//	"user": "username"
 	// }
 	const body = req.body;
-	
+
 	User.findOne(body, function(err, user) {
 		return User.find({}, function(err, users) {
 			// this is the user object with matches
 			const matchedUser = matchUser_toUsers(user, users);
-
-			// this is the list of match objects, which look like:
-			//   {
-			//       "user": "username"
-			//       , "dist": 60 // sample distance in miles
-			//   }
-			const matchedObjects = _.get(matchedUser, "matches");
-			const matches = _.map(matchedObject, obj => _.get(obj, "user"));
+			const matches = _.get(matchedUser, "matches");
 
 			// transform user array into users object; has all matched users
 			const usersObject = _.reduce(users, (usrObj, usr) => {
-				// get the index of matched user
-				const idx = _.indexOf(matches, _.get(usr, "user"));
-
 				// if the user is a "matched" user, add them
-				if(idx < 0) {
+				if(_.indexOf(matches, _.get(usr, "user")) < 0) {
 					return usrObj;
 				}
 
 				// if the user is "matched", add them
-				return _.assign({}, usrObj, {
-					[_.get(usr, "user")]: _.assign({}, usr, { "dist": _.get(matchedObjects[idx], "dist") })
-				});
+				return _.assign({}, usrObj, { [_.get(usr, "user")]: usr });
 			}, {});
 
 			// get the relevant information
@@ -77,11 +65,11 @@ Router.post('/matchUser', function(req, res) {
 					  "_id": _.get(usr, "_id")
 					, "name": _.get(usr, "name")
 					, "avatar": _.get(usr, "avatar")
-					, "dist": _.get(usr, "dist")
+					, "distance": _.get(usr, "distance")
 					, "desc": _.get(usr, "desc")
 				});
-			}
-			
+			})
+
 			// SEND IT BABY
 			return res.json(relevantUsers);
 		});
