@@ -72,13 +72,13 @@ Router.post('/matchUser', function(req, res) {
 
 			// get the relevant information
 			const relevantUsers = _.mapValues(usersObject, usr => {
-				return _.assign({}, {
+				return {
 					  "_id": _.get(usr, "_id")
 					, "name": _.get(usr, "name")
 					, "avatar": _.get(usr, "avatar")
 					, "dist": _.get(usr, "dist")
 					, "desc": _.get(usr, "desc")
-				});
+				};
 			}
 			
 			// SEND IT BABY
