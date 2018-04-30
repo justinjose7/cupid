@@ -18,11 +18,14 @@ const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbormtzbg/image/u
 class Profile extends React.Component{
     constructor(props) {
       super(props)
+      this.handleSubmission = this.handleSubmission.bind(this);
+
       this.state = {
         avatar: '',
         desc:'',
         maxdist:'',
         latLng: '',
+        msg: '',
       }
     }
 
@@ -63,6 +66,15 @@ class Profile extends React.Component{
         console.log(this.state.latLng)
     }
 
+    handleSubmission() {
+      if (!this.state.avatar || !this.state.desc || !this.state.maxdist || !this.state.latLng){
+        this.handleChange('msg', 'Image missing or not all fields complete');
+      } else {
+        this.handleChange('msg', '');
+        this.props.update(this.state);
+      }
+    }
+
     render(){
       const path = this.props.location.pathname
       const redirect = this.props.redirectTo
@@ -93,9 +105,11 @@ class Profile extends React.Component{
                     onChange={e => this.handleChange('maxdist', e.target.value)}
                 />
                 <br/>
-                <button className="completeProfileBtn" onClick={() => {this.props.update(this.state)}}>Profile Complete</button>
+                <button className="completeProfileBtn" onClick={this.handleSubmission}>Profile Complete</button>
+                {this.state.msg?<p className='error-msg'>{this.state.msg}</p>:null}
 
             </div>
+
           <br/>
           <br/>
           <br/>
