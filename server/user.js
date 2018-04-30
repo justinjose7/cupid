@@ -43,32 +43,40 @@ Router.post('/matchUser', function(req, res) {
 	const body = req.body;
 
 	User.findOne(body, function(err, user) {
-		return User.find({}, function(err, users) {
+		User.find({}, function(err, users) {
 			// this is the user object with matches
 			const matchedUser = matchUser_toUsers(user, users);
-			const matches = _.get(matchedUser, "matches");
+			
+			const matchedObjects = _.get(matchedUser, "matches");
+			const matches = _.map(matchedObjects, obj => _.get(obj, "user"));
+
+			const fetchedUsers = _.map(users, fetchUser => _.get(fetchUser, "_doc"));
 
 			// transform user array into users object; has all matched users
-			const usersObject = _.reduce(users, (usrObj, usr) => {
-				// if the user is a "matched" user, add them
-				if(_.indexOf(matches, _.get(usr, "user")) < 0) {
+			const usersObject = _.reduce(fetchedUsers, (usrObj, usr) => {
+				// get the index of matched user
+				const idx = _.indexOf(matches, _.get(usr, "user"));
+				
+				// if the user is not a matched user, keep going
+				if(idx < 0) {
 					return usrObj;
 				}
 
 				// if the user is "matched", add them
-				return _.assign({}, usrObj, { [_.get(usr, "user")]: usr });
+				return _.assign({}, usrObj, {
+					[_.get(usr, "user")]: _.assign({}, usr, { "dist": _.get(matchedObjects[idx], "dist") })
+				});
 			}, {});
 
 			// get the relevant information
 			const relevantUsers = _.mapValues(usersObject, usr => {
-				return _.assign({}, {
-					  "_id": _.get(usr, "_id")
-					, "name": _.get(usr, "name")
+				return {
+					  "name": _.get(usr, "name")
 					, "avatar": _.get(usr, "avatar")
-					, "distance": _.get(usr, "distance")
+					, "dist": _.get(usr, "dist")
 					, "desc": _.get(usr, "desc")
-				});
-			})
+				};
+			});
 
 			// SEND IT BABY
 			return res.json(relevantUsers);
