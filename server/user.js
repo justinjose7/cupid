@@ -61,6 +61,10 @@ Router.post('/getMatches', function(req, res) {
 				return _.concat([], acc, like);
 			}, []);
 
+			console.log(m);
+			console.log(_.get(m, "_doc"));
+			console.log(_.get(_.get(m, "_doc"), "matches"));
+
 			// take array of matches and look them up to see if they have me in their thing
 			Promise.all(Promise.reduce(matches, (acc, match) => {
 				return Matches.findOne({ "user": match })
