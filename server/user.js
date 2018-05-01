@@ -130,11 +130,14 @@ Router.put('/confirmMatch', function(req, res) {
 		// let's update them with our match information
 		else {
 			// get the modified match
-			const modifiedMatch = _.assign({}, m, {
+			const modDoc = _.assign({}, _.get(m, "_doc"), {
 				[_.get(match, "user")]: _.get(match, "resp")
 			});
+			console.log(modDoc);
 			
-			console.log(modifiedMatch);
+			const modifiedMatch = _.assign({}, m, {
+				"_doc": modDoc
+			});
 
 			const matchModel = new Matches(modifiedMatch);
 
