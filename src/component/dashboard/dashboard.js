@@ -57,6 +57,13 @@ class Dashboard extends React.Component {
                 component:MatchCards,
             },
             {
+                path:'/',
+                text:'People Nearby',
+                icon:'job',
+                title:'People Nearby',
+                component:MatchCards,
+            },
+            {
                 path:'/matches',
                 text:'Matches',
                 icon:'msg',
