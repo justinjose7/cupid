@@ -117,7 +117,7 @@ class MatchCards extends Component {
               console.log(this.matchArray);
 
             }
-            if (this.i != this.matchArray.length){
+            if (this.i < this.matchArray.length){
               return this.props.user? (
                   <div>
                       <div className="stack-container">
