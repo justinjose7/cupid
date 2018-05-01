@@ -95,7 +95,7 @@ class MatchCards extends Component {
                           <div className="card-top">
                               <div className="img-card"><img className="img" src={matchArray[this.state.i].avatar} /></div>
                               <div className="name-header-card" ><b>{matchArray[this.state.i].name}</b></div>
-                              <div className="text-card">{matchArray[this.state.i].distance} </div>
+                              <div className="text-card">{Math.round(matchArray[this.state.i].dist)} miles away</div>
                               <div className="text-card"><i>{matchArray[this.state.i].desc}</i></div>
 
                           </div>
@@ -106,6 +106,7 @@ class MatchCards extends Component {
                       </div>
                   </div>
               ):null}
+              window.removeEventListener("keydown", this.handleKeyPress);
               return (
                 <div className="no-cards-left">No more people left...</div>
               );
