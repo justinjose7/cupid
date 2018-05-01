@@ -6,9 +6,11 @@ import {Switch,Route,Link,Redirect} from 'react-router-dom'
 import Student from '../../component/student/student'
 import User from '../../component/user/user'
 import MatchCards from '../match-cards/match-cards'
+import MatchArray from '../match-array/match-array'
 import {getMsgList,recvMsg} from '../../redux/chat.redux'
 import { slide as Menu } from 'react-burger-menu'
 import {logoutSubmit} from '../../redux/user.redux'
+import match from '../../redux/match.redux'
 import browserCookies from 'browser-cookies'
 import '../../css/dashboard.css'
 function Msg() {
@@ -44,7 +46,8 @@ class Dashboard extends React.Component {
         const props = this.props
         const user = this.props.user
         const {pathname} = this.props.location
-        console.log(JSON.stringify(this.props))
+        //console.log(JSON.stringify(this.props))
+        console.log(this.props)
         const navList = [
             {
                 path:'/nearby',
@@ -58,7 +61,7 @@ class Dashboard extends React.Component {
                 text:'Matches',
                 icon:'msg',
                 title:'Matches',
-                component:Msg
+                component:MatchArray
             },
             {
                 path:'/myprofile',
