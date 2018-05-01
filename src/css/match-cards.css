@@ -13,6 +13,14 @@
   border-radius: 50px;
 }
 
+.matchesArrayIcons {
+  list-style: 'none';
+  text-align: 'center';
+  font: 'Arial';
+  width: '150px';
+  display: 'inline-block';
+}
+
 .card-top {
     position: absolute;
     top:0px;

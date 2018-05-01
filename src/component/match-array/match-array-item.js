@@ -3,8 +3,7 @@ import '../../css/match-cards.css'
 import PropTypes from 'prop-types'
 
 const MatchArrayItem = ({avatar, user }) => (
-  <li
-style={{listStyle: 'none', textAlign: 'center', font: 'Arial', width: '150px'}}
+  <li className='matchesArrayIcons'
     //onClick={onClick}
   >
     <div>
