@@ -33,6 +33,10 @@ class MatchCards extends Component {
             case 'ArrowLeft':
                 console.log('left swipe');
                 // console.log(this.matchArray[this.i].user)
+                axios.put('/user/confirmMatch',{ user: this.props.user, match: {
+                  user: this.matchArray[this.i].user,
+                  resp: false
+                }})
                 this.increment_i();
                 break;
             case 'ArrowRight':
