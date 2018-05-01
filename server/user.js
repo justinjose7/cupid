@@ -24,13 +24,13 @@ Router.get('/getmsglist', function (req,res) {
     const user = req.cookies.user
     User.find({}, function (e,userDoc) {
         let users = {}
-        console.log(userDoc)
+        //console.log(userDoc)
         userDoc.forEach(v => {
             users[v._id] = {name: v.user,avatar: v.avatar}
         })
         Chat.find({'$or':[{from:user},{to:user}]}, function (err,doc) {
             if (!err) {
-                console.log(doc)
+                //console.log(doc)
                 return res.json({code:0,msgs:doc,users:users})
             }
         })
@@ -44,7 +44,8 @@ Router.post('/getMatches', function(req, res) {
 	const userObjectQuery = { "user": user };
 
 	// get all the users for a given user
-	Matches.findOne(userObjectQuery, function(err, m) {
+	Matches.findOne(userObjectQuery).exec()
+  .then(m => {
 		if(!m) {
 			// this user doesn't exist lmao wat r u doing
 			return res.json({ "matches": [] });
@@ -61,18 +62,10 @@ Router.post('/getMatches', function(req, res) {
 				return _.concat([], acc, like);
 			}, []);
 
-			console.log(m);
-			console.log(_.get(m, "_doc"));
-			console.log(_.get(_.get(m, "_doc"), "matches"));
-
 			// take array of matches and look them up to see if they have me in their thing
-			Promise.all(Promise.reduce(matches, (acc, match) => {
-				return Matches.findOne({ "user": match })
-				.then((err, otherUser) => {
-					console.log(otherUser);
-					const otherMatches = _.get(_.get(_.get(m, "_doc"), "matches"), user);
-
-					console.log(otherMatches);
+			Promise.all(Promise.reduce(matches, (acc, match) => Matches.findOne({ "user": match }).exec()
+        .then(otherUser => {
+					const otherMatches = _.get(_.get(otherUser, "matches"), user);
 
 					// they both match!
 					if(otherMatches) {
@@ -80,23 +73,21 @@ Router.post('/getMatches', function(req, res) {
 						// then concat to the array ASAH DOOD
 
 						return _.concat([], acc,
-							User.findOne({ "user": match })
-							.then((err, matchedUserData) => {
-
-								return {
+							User.findOne({ "user": match }).exec()
+              .then(matchedUserData => {
+                return {
 									 "user": match
 									, "avatar": _.get(matchedUserData, "avatar")
 									, "name": _.get(matchedUserData, "name")
-								};
+                }
 							}));
 					}
 
 					// discrepancy; let's return what we have so far
 					return acc;
-				});
-			}, []))
+				}), []))
 			.then(results => { // give the matches to the frontend or whatever
-				res.json({ "matches": results });
+        res.json({ "matches": results });
 			});
 		}
 	});

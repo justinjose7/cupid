@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const Promise = require('bluebird')
+mongoose.Promise = Promise;
 const DB_URL = 'mongodb://cooper:58OfWT!@ds239439.mlab.com:39439/cupid'
 mongoose.connect(DB_URL)
 

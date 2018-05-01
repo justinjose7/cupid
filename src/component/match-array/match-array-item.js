@@ -2,14 +2,14 @@ import React from 'react'
 import '../../css/match-cards.css'
 import PropTypes from 'prop-types'
 
-const MatchArrayItem = ({avatar, user }) => (
+const MatchArrayItem = ({avatar, user, name }) => (
   <li className='matchesArrayIcons'
     //onClick={onClick}
   >
     <div>
       <img className="user-icon" src={avatar} />
     </div>
-    {user}
+    {name}
   </li>
 )
 
