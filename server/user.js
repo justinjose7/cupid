@@ -10,7 +10,7 @@ const _filter = {'pwd':0,'__v':0}
 const Promise = require("bluebird");
 
 // include the user matching function
-const { matchUser_toUsers } = require("match");
+const { matchUser_toUsers } = require("../local_modules/match");
 const _ = require("lodash");
 
 Router.get('/list', function (req,res) {
@@ -49,7 +49,7 @@ Router.post('/getMatches', function(req, res) {
 			// this user doesn't exist lmao wat r u doing
 			return res.json({ "matches": [] });
 		}
-		
+
 		// if we can find the user, let's look at their matches
 		else {
 			// this is an object that looks like
@@ -71,7 +71,7 @@ Router.post('/getMatches', function(req, res) {
 					if(otherMatches) {
 						// look up the user data
 						// then concat to the array ASAH DOOD
-						
+
 						return _.concat([], acc,
 							User.findOne({ "user": match })
 							.then((err, matchedUserData) => {
@@ -82,7 +82,7 @@ Router.post('/getMatches', function(req, res) {
 								};
 							}));
 					}
-					
+
 					// discrepancy; let's return what we have so far
 					return acc;
 				});
@@ -98,7 +98,7 @@ Router.put('/confirmMatch', function(req, res) {
 	const { user, match } = req.body;
 
 	const userObjectQuery = { "user": user };
-	
+
 	Matches.findOne(userObjectQuery, function(err, m) {
 		// the user doesn't exist in the match db yet
 		// let's create them then
@@ -117,8 +117,8 @@ Router.put('/confirmMatch', function(req, res) {
 			    if(e) {
 				return res.json({code:1,msg:'Server Error',e:e})
 			    }
-			    const {user,matches} = d;
-			    res.json({code:0,data:{user,matches}})
+			    const {user} = d;
+			    res.json({code:0,data:{user}})
 			});
 		}
 
@@ -137,8 +137,8 @@ Router.put('/confirmMatch', function(req, res) {
 			    if(e) {
 				return res.json({code:1,msg:'Server Error',e:e})
 			    }
-			    const {user,matches} = d;
-			    res.json({code:0,data:{user,matches}})
+			    const {user} = d;
+			    res.json({code:0,data:true})
 			});
 		}
 	});
@@ -150,7 +150,7 @@ Router.post('/matchUser', function(req, res) {
 	//	"user": "username"
 	// }
 	const body = req.body;
-	
+
 	User.findOne(body, function(err, user) {
 		User.find({}, function(err, users) {
 			// this is the user object with matches
@@ -175,7 +175,7 @@ Router.post('/matchUser', function(req, res) {
 				if(idx < 0) {
 					return usrObj;
 				}
-				
+
 				// if the user is "matched", add them
 				return _.assign({}, usrObj, {
 					[_.get(usr, "user")]: _.assign({}, usr, { "dist": _.get(matchedObjects[idx], "dist") })
@@ -189,6 +189,7 @@ Router.post('/matchUser', function(req, res) {
 					, "avatar": _.get(usr, "avatar")
 					, "dist": _.get(usr, "dist")
 					, "desc": _.get(usr, "desc")
+          , "user": _.get(usr, "user")
 				};
 			});
 

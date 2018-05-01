@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import '../../css/match-cards.css'
 import {connect} from 'react-redux'
 import {loadData, getMatches} from '../../redux/user.redux'
@@ -17,8 +18,9 @@ class MatchCards extends Component {
         this.fillMatches = this.fillMatches.bind(this);
         this.state = {
             i: 0,
-            loadedMatches: false,
+            loadedMatches: false
         };
+        this.matchArray = []
 
     };
 
@@ -30,10 +32,16 @@ class MatchCards extends Component {
         switch(event.key) {
             case 'ArrowLeft':
                 console.log('left swipe');
+                // console.log(this.matchArray[this.i].user)
                 this.increment_i();
                 break;
             case 'ArrowRight':
                 console.log('right swipe');
+                console.log(this.matchArray[this.i].user)
+                axios.put('/user/confirmMatch',{ user: this.props.user, match: {
+                  user: this.matchArray[this.i].user,
+                  resp: true
+                }})
                 this.increment_i();
                 break;
             default:
@@ -69,7 +77,7 @@ class MatchCards extends Component {
 
     i = 0;
     render() {
-            let matchArray = [];
+            // let matchArray = [];
 
             if (this.props.user != '' && this.state.loadedMatches == false){
                 console.log(this.props.user)
@@ -82,21 +90,22 @@ class MatchCards extends Component {
                 console.log(this.props.payload)
                 const payload_val = this.props.payload;
                 const keys = Object.keys(payload_val);
-                keys.forEach(function(key) {
-                    matchArray = matchArray.concat([ payload_val[key] ]);
-              });
-              console.log(matchArray);
+                const ourFunc = function(key) {
+                    this.matchArray = this.matchArray.concat([ payload_val[key] ]);
+              };
+                keys.forEach(ourFunc.bind(this));
+              console.log(this.matchArray);
 
             }
-            if (this.i != matchArray.length){
+            if (this.i != this.matchArray.length){
               return this.props.user? (
                   <div>
                       <div className="stack-container">
                           <div className="card-top">
-                              <div className="img-card"><img className="img" src={matchArray[this.state.i].avatar} /></div>
-                              <div className="name-header-card" ><b>{matchArray[this.state.i].name}</b></div>
-                              <div className="text-card">{Math.round(matchArray[this.state.i].dist)} miles away</div>
-                              <div className="text-card"><i>{matchArray[this.state.i].desc}</i></div>
+                              <div className="img-card"><img className="img" src={this.matchArray[this.state.i].avatar} /></div>
+                              <div className="name-header-card" ><b>{this.matchArray[this.state.i].name}</b></div>
+                              <div className="text-card">{Math.round(this.matchArray[this.state.i].dist)} miles away</div>
+                              <div className="text-card"><i>{this.matchArray[this.state.i].desc}</i></div>
 
                           </div>
                           <div className="card-middle">{}</div>

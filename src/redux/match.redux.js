@@ -10,7 +10,7 @@ export function match(state = [], action){
   switch (action.type){
     case UPDATE_MATCH_ARRAY:
         console.log('getting to this point')
-        return state.concat(action.payload)
+        return action.payload
     default:
       return state
   }
@@ -33,9 +33,9 @@ export function getMatchArray({user}) {
         axios.post('/user/getMatches',{ user: user })
             .then(res => {
               if(res.status == 200){
-                console.log(res.data);
+                console.log(res.data.matches);
                 //dispatch(returnMatchArray([{ avatar: 1, user: 'Fred'},{ avatar: 1, user: 'Fontaine'},{ avatar: 1, user: 'The'},{ avatar: 1, user: 'MotherFuckng'}]))
-                dispatch(returnMatchArray(res.data))
+                dispatch(returnMatchArray(res.data.matches))
               }
             })
     }
