@@ -133,6 +133,8 @@ Router.put('/confirmMatch', function(req, res) {
 			const modifiedMatch = _.assign({}, m, {
 				[_.get(match, "user")]: _.get(match, "resp")
 			});
+			
+			console.log(modifiedMatch);
 
 			const matchModel = new Matches(modifiedMatch);
 
