@@ -4,10 +4,13 @@ const Router = express.Router()
 const model = require('./model')
 const User = model.getModel('user')
 const Chat = model.getModel('chat')
+const Matches = model.getModel('matches') // bring in the Matches model
 const _filter = {'pwd':0,'__v':0}
 
+const Promise = require("bluebird");
+
 // include the user matching function
-const { matchUser_toUsers } = require("../local_modules/match");
+const { matchUser_toUsers } = require("match");
 const _ = require("lodash");
 
 Router.get('/list', function (req,res) {
@@ -34,6 +37,112 @@ Router.get('/getmsglist', function (req,res) {
     })
 })
 
+Router.post('/getMatches', function(req, res) {
+	// return an array of all confirmed matches
+	// along with pertinent information
+	const { user } = req.body;
+	const userObjectQuery = { "user": user };
+
+	// get all the users for a given user
+	Matches.findOne(userObjectQuery, function(err, m) {
+		if(!m) {
+			// this user doesn't exist lmao wat r u doing
+			return res.json({ "matches": [] });
+		}
+		
+		// if we can find the user, let's look at their matches
+		else {
+			// this is an object that looks like
+			// {
+			//	"usernameMatch": Boolean
+			// }
+			const matches = _.reduce(_.get(m, "matches"), (acc, val, key) => {
+				const like = (val) ? [ key ] : [];
+				return _.concat([], acc, like);
+			}, []);
+
+			// take array of matches and look them up to see if they have me in their thing
+			Promise.all(Promise.reduce(matches, (acc, match) => {
+				return Matches.findOne({ "user": match })
+				.then((err, otherUser) => {
+					const otherMatches = _.get(_.get(m, "matches"), user);
+
+					// they both match!
+					if(otherMatches) {
+						// look up the user data
+						// then concat to the array ASAH DOOD
+						
+						return _.concat([], acc,
+							User.findOne({ "user": match })
+							.then((err, matchedUserData) => {
+								return {
+									 "user": match
+									, "avatar": _.get(matchedUserData, "avatar")
+									, "name": _.get(matchedUserData, "name")
+								};
+							}));
+					}
+					
+					// discrepancy; let's return what we have so far
+					return acc;
+				});
+			}, []))
+			.then(results => { // give the matches to the frontend or whatever
+				res.json({ "matches": results });
+			});
+		}
+	});
+});
+
+Router.put('/confirmMatch', function(req, res) {
+	const { user, match } = req.body;
+
+	const userObjectQuery = { "user": user };
+	
+	Matches.findOne(userObjectQuery, function(err, m) {
+		// the user doesn't exist in the match db yet
+		// let's create them then
+		if(!m) {
+			// create the new match entry for the database
+			const newMatchEntry = {
+				  "user": user
+				, "matches": {
+					[_.get(match, "user")]: _.get(match, "resp")
+				}
+			};
+			const matchModel = new Matches(newMatchEntry);
+
+			// save the new match entry to the database
+			matchModel.save(function(e,d){
+			    if(e) {
+				return res.json({code:1,msg:'Server Error',e:e})
+			    }
+			    const {user,matches} = d;
+			    res.json({code:0,data:{user,matches}})
+			});
+		}
+
+		// if the user does exist in the match db
+		// let's update them with our match information
+		else {
+			// get the modified match
+			const modifiedMatch = _.assign({}, m, {
+				[_.get(match, "user")]: _.get(match, "resp")
+			});
+
+			const matchModel = new Matches(newMatchEntry);
+
+			// save the new match entry to the database
+			matchModel.save(function(e,d){
+			    if(e) {
+				return res.json({code:1,msg:'Server Error',e:e})
+			    }
+			    const {user,matches} = d;
+			    res.json({code:0,data:{user,matches}})
+			});
+		}
+	});
+});
 
 Router.post('/matchUser', function(req, res) {
 	// this body should look something like this:
@@ -41,37 +150,48 @@ Router.post('/matchUser', function(req, res) {
 	//	"user": "username"
 	// }
 	const body = req.body;
-
+	
 	User.findOne(body, function(err, user) {
-		return User.find({}, function(err, users) {
+		User.find({}, function(err, users) {
 			// this is the user object with matches
 			const matchedUser = matchUser_toUsers(user, users);
-			const matches = _.get(matchedUser, "matches");
+
+			// this is the list of match objects, which look like:
+			//   {
+			//       "user": "username"
+			//       , "dist": 60 // sample distance in miles
+			//   }
+			const matchedObjects = _.get(matchedUser, "matches");
+			const matches = _.map(matchedObjects, obj => _.get(obj, "user"));
 
 			// transform user array into users object; has all matched users
 			const usersObject = _.reduce(users, (usrObj, usr) => {
+				// get the index of matched user
+				const idx = _.indexOf(matches, _.get(usr, "user"));
+
 				// if the user is a "matched" user, add them
-				if(_.indexOf(matches, _.get(usr, "user")) < 0) {
+				if(idx < 0) {
 					return usrObj;
 				}
-
+				
 				// if the user is "matched", add them
-				return _.assign({}, usrObj, { [_.get(usr, "user")]: usr });
+				return _.assign({}, usrObj, {
+					[_.get(usr, "user")]: _.assign({}, usr, { "dist": _.get(matchedObjects[idx], "dist") })
+				});
 			}, {});
 
 			// get the relevant information
 			const relevantUsers = _.mapValues(usersObject, usr => {
-				return _.assign({}, {
-					  "_id": _.get(usr, "_id")
-					, "name": _.get(usr, "name")
+				return {
+					  "name": _.get(usr, "name")
 					, "avatar": _.get(usr, "avatar")
-					, "distance": _.get(usr, "distance")
+					, "dist": _.get(usr, "dist")
 					, "desc": _.get(usr, "desc")
-				});
-			})
-
+				};
+			}
+			
 			// SEND IT BABY
-			return res.json(relevantUsers);
+			res.json(relevantUsers);
 		});
 	});
 });
