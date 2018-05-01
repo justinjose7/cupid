@@ -34,7 +34,7 @@ export function getMatchArray({user}) {
             .then(res => {
               if(res.status == 200){
                 console.log(res.data.matches);
-                dispatch(returnMatchArray([{ avatar: 'https://cooper.edu/sites/default/files/fontaine1.jpg', user: 'Fred'},{ avatar: 'http://cooper.edu/sites/default/files/keene1.jpg', user: 'Keene'},{ avatar: 'https://res.cloudinary.com/dbormtzbg/image/upload/v1524193299/dskvjqgqigv8smdthp1g.jpg', user: 'Carl'},{ avatar: 'https://engfac.cooper.edu/photos/bailyn.jpg', user: 'Bailyn'}]))
+                dispatch(returnMatchArray([{ avatar: 'https://cooper.edu/sites/default/files/fontaine1.jpg', user: 'Fred'},{ avatar: 'http://cooper.edu/sites/default/files/keene1.jpg', user: 'Keene'},{ avatar: 'https://res.cloudinary.com/dbormtzbg/image/upload/v1524193299/dskvjqgqigv8smdthp1g.jpg', user: 'Carl'},{ avatar: 'https://engfac.cooper.edu/photos/bailyn.jpg', user: 'Bailyn'},{ avatar: 'https://cooper.edu/sites/default/files/fontaine1.jpg', user: 'Fred'},{ avatar: 'http://cooper.edu/sites/default/files/keene1.jpg', user: 'Keene'},{ avatar: 'https://res.cloudinary.com/dbormtzbg/image/upload/v1524193299/dskvjqgqigv8smdthp1g.jpg', user: 'Carl'},{ avatar: 'https://engfac.cooper.edu/photos/bailyn.jpg', user: 'Bailyn'}]))
                 // dispatch(returnMatchArray(res.data.matches))
               }
             })
