@@ -49,7 +49,12 @@ function matchUser_toUsers(user, users) {
                         const shared = _.reduce(interest, (share, interested) => share || interested, false);
 
                         if(shared) {
-                                return _.concat([], matches, _.get(prospect, "user"));
+				const newUsr = {
+					"user": _.get(prospect, "user")
+					, "dist": distance
+				};
+
+                                return _.concat([], matches, newUsr);
                         }
 
                         return matches;

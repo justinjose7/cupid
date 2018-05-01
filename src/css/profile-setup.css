@@ -3,7 +3,7 @@
     height: 280px;
     z-index: 2;
     display: inline;
-    	
+
 }
 
 img {
@@ -18,8 +18,8 @@ img {
     border-color: #E6E6E6;
     margin: auto;
     text-align:center;
-    width: 350px; 
-    height: 537px;
+    width: 350px;
+    height: 550px;
     background: #FFFFFF;
 }
 
@@ -29,7 +29,7 @@ img {
 	background: white;
 	color: #757575;
 	font: "Roboto";
-	margin: auto auto; 	
+	margin: auto auto;
 	margin-top: 1em;
 	font-size: 14px;
 	font-weight: bold;
@@ -81,7 +81,7 @@ img {
 }
 
 .completeProfileBtn {
-	position: relative;	
+	position: relative;
 	left: 0;
 	right: 0;
 	text-align:center;

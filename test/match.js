@@ -1,4 +1,5 @@
 const { matchUsers, matchUser_toUsers } = require("match");
+const _ = require("lodash");
 
 const users = [
         {
@@ -13,9 +14,9 @@ const users = [
             "__v": 0,
             "latLng": {
                 "lat": 42.7297312,
-                "lng": -75.98936179999998
+                "lng": -77.98936179999998
             },
-            "maxdist": 100,
+            "maxdist": 1000,
             "desc": "i speak computer",
             "avatar": "https://res.cloudinary.com/dbormtzbg/image/upload/v1524783721/h9sl5jbc5w5fv3lnplvh.jpg",
             "surveyComplete": true,
@@ -42,7 +43,7 @@ const users = [
                 "lat": 41.7297312,
                 "lng": -74.98936179999998
             },
-            "maxdist": 500,
+            "maxdist": 1000,
             "desc": "i speak computer",
             "avatar": "https://res.cloudinary.com/dbormtzbg/image/upload/v1524783721/h9sl5jbc5w5fv3lnplvh.jpg",
             "surveyComplete": true,
@@ -59,4 +60,4 @@ const users = [
 
 const matched = matchUsers(users);
 
-console.log(matched);
+console.log(_.map(matched, usr => _.get(usr, "matches")));
