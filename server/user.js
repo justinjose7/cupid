@@ -56,7 +56,7 @@ Router.post('/getMatches', function(req, res) {
 			// {
 			//	"usernameMatch": Boolean
 			// }
-			const matches = _.reduce(_.get(m, "matches"), (acc, val, key) => {
+			const matches = _.reduce(_.get(_.get(m, "_doc"), "matches"), (acc, val, key) => {
 				const like = (val) ? [ key ] : [];
 				return _.concat([], acc, like);
 			}, []);
@@ -65,7 +65,9 @@ Router.post('/getMatches', function(req, res) {
 			Promise.all(Promise.reduce(matches, (acc, match) => {
 				return Matches.findOne({ "user": match })
 				.then((err, otherUser) => {
-					const otherMatches = _.get(_.get(m, "matches"), user);
+					const otherMatches = _.get(_.get(_.get(m, "_doc"), "matches"), user);
+
+					console.log(otherMatches);
 
 					// they both match!
 					if(otherMatches) {
@@ -103,7 +105,6 @@ Router.put('/confirmMatch', function(req, res) {
 	Matches.findOne(userObjectQuery, function(err, m) {
 		// the user doesn't exist in the match db yet
 		// let's create them then
-		if(err) return console.log("fuck 1");
 
 		if(!m) {
 			// create the new match entry for the database
@@ -134,7 +135,6 @@ Router.put('/confirmMatch', function(req, res) {
 			const modMatch = _.assign({}, _.get(_.get(m, "_doc"), "matches"), {
 				[_.get(match, "user")]: _.get(match, "resp")
 			});
-			console.log(modMatch);
 
 			// save the new match entry to the database
 			Matches.update({ "user": upUser }, { $set: { "matches": modMatch } }, function(e,d){
