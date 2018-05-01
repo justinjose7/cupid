@@ -65,6 +65,7 @@ Router.post('/getMatches', function(req, res) {
 			Promise.all(Promise.reduce(matches, (acc, match) => {
 				return Matches.findOne({ "user": match })
 				.then((err, otherUser) => {
+					console.log(_.get(m, "_doc"));
 					const otherMatches = _.get(_.get(_.get(m, "_doc"), "matches"), user);
 
 					console.log(otherMatches);
