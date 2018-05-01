@@ -75,6 +75,7 @@ Router.post('/getMatches', function(req, res) {
 						return _.concat([], acc,
 							User.findOne({ "user": match })
 							.then((err, matchedUserData) => {
+
 								return {
 									 "user": match
 									, "avatar": _.get(matchedUserData, "avatar")
@@ -102,6 +103,8 @@ Router.put('/confirmMatch', function(req, res) {
 	Matches.findOne(userObjectQuery, function(err, m) {
 		// the user doesn't exist in the match db yet
 		// let's create them then
+		if(err) return console.log("fuck 1");
+
 		if(!m) {
 			// create the new match entry for the database
 			const newMatchEntry = {
@@ -110,6 +113,7 @@ Router.put('/confirmMatch', function(req, res) {
 					[_.get(match, "user")]: _.get(match, "resp")
 				}
 			};
+
 			const matchModel = new Matches(newMatchEntry);
 
 			// save the new match entry to the database
@@ -130,7 +134,7 @@ Router.put('/confirmMatch', function(req, res) {
 				[_.get(match, "user")]: _.get(match, "resp")
 			});
 
-			const matchModel = new Matches(newMatchEntry);
+			const matchModel = new Matches(modifiedMatch);
 
 			// save the new match entry to the database
 			matchModel.save(function(e,d){
