@@ -90,6 +90,7 @@ class MatchCards extends Component {
                 console.log(this.props.payload)
                 const payload_val = this.props.payload;
                 const keys = Object.keys(payload_val);
+                this.matchArray = []
                 const ourFunc = function(key) {
                     this.matchArray = this.matchArray.concat([ payload_val[key] ]);
               };

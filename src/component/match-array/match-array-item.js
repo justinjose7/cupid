@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 const MatchArrayItem = ({avatar, user }) => (
   <li
+style={{listStyle: 'none', textAlign: 'center', font: 'Arial', width: '150px'}}
     //onClick={onClick}
   >
     <div>
