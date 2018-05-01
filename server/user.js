@@ -130,19 +130,14 @@ Router.put('/confirmMatch', function(req, res) {
 		// let's update them with our match information
 		else {
 			// get the modified match
-			const modDoc = _.assign({}, _.get(m, "_doc"), {
+			const upUser = _.get(_.get(m, "_doc"), "user");
+			const modMatch = _.assign({}, _.get(_.get(m, "_doc"), "matches"), {
 				[_.get(match, "user")]: _.get(match, "resp")
 			});
-			console.log(modDoc);
-			
-			const modifiedMatch = _.assign({}, m, {
-				"_doc": modDoc
-			});
-
-			const matchModel = new Matches(modifiedMatch);
+			console.log(modMatch);
 
 			// save the new match entry to the database
-			matchModel.save(function(e,d){
+			Matches.update({ "user": upUser }, { $set: { "matches": modMatch } }, function(e,d){
 			    if(e) {
 				return res.json({code:1,msg:'Server Error',e:e})
 			    }
