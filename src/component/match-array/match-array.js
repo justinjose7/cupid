@@ -86,7 +86,9 @@ class MatchArray extends React.Component {
             }
             if (this.i != matchArray.length){
               return this.props.user? (
-                <MatchArrayContainer />
+                <div style= {{paddingTop:'25px'}}>
+                  <MatchArrayContainer />
+                </div>
                   // <div>
                   //     <div className="stack-container">
                   //         <div className="card-top">
