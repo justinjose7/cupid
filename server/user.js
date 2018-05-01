@@ -178,7 +178,10 @@ Router.post('/matchUser', function(req, res) {
 
 				// if the user is "matched", add them
 				return _.assign({}, usrObj, {
-					[_.get(usr, "user")]: _.assign({}, usr, { "dist": _.get(matchedObjects[idx], "dist") })
+					[_.get(usr, "user")]: _.assign({}, usr, {
+						"dist": _.get(matchedObjects[idx], "dist")
+						, "commonInterests": _.get(matchedObjects[idx], "commonInterests")
+					})
 				});
 			}, {});
 
@@ -190,6 +193,7 @@ Router.post('/matchUser', function(req, res) {
 					, "dist": _.get(usr, "dist")
 					, "desc": _.get(usr, "desc")
           , "user": _.get(usr, "user")
+					, "commonInterests": _.get(usr, "commonInterests")
 				};
 			});
 

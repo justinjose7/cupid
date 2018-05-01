@@ -52,6 +52,7 @@ function matchUser_toUsers(user, users) {
 				const newUsr = {
 					"user": _.get(prospect, "user")
 					, "dist": distance
+					, "commonInterests": interest
 				};
 
                                 return _.concat([], matches, newUsr);
