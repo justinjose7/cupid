@@ -164,8 +164,10 @@ Router.post('/matchUser', function(req, res) {
 			const matchedObjects = _.get(matchedUser, "matches");
 			const matches = _.map(matchedObjects, obj => _.get(obj, "user"));
 
+			const fetchedUsers = _.map(users, fetchUser => _.get(fetchUser, "_doc"));
+
 			// transform user array into users object; has all matched users
-			const usersObject = _.reduce(users, (usrObj, usr) => {
+			const usersObject = _.reduce(fetchedUsers, (usrObj, usr) => {
 				// get the index of matched user
 				const idx = _.indexOf(matches, _.get(usr, "user"));
 
@@ -188,8 +190,8 @@ Router.post('/matchUser', function(req, res) {
 					, "dist": _.get(usr, "dist")
 					, "desc": _.get(usr, "desc")
 				};
-			}
-			
+			});
+
 			// SEND IT BABY
 			res.json(relevantUsers);
 		});
