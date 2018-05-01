@@ -57,6 +57,13 @@ class Dashboard extends React.Component {
                 component:MatchCards,
             },
             {
+                path:'/',
+                text:'People Nearby',
+                icon:'job',
+                title:'People Nearby',
+                component:MatchCards,
+            },
+            {
                 path:'/matches',
                 text:'Matches',
                 icon:'msg',
@@ -83,7 +90,7 @@ class Dashboard extends React.Component {
                 </Menu>
                 <Switch>
                     {navList.map(v=>(
-                        <Route key={v.path} path={v.path} component={v.component}></Route>
+                        <Route key={v.path} exact path={v.path} component={v.component}></Route>
                     ))}
                 </Switch>
 
