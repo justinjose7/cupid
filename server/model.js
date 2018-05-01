@@ -33,6 +33,11 @@ const models = {
         'read':{'type':String,'default':false},
         'content':{'type':String,'require':true,'default':''},
         'create_time':{'type':Number,'default':new Date().getTime()}
+    },
+    matches:{
+        'user':{'type':String,'require':true},
+	'matches':Schema.Types.Mixed           // this lets us make an object of
+					       // users that have been officially matched
     }
 }
 
