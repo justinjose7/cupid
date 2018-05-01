@@ -3,6 +3,8 @@ import axios from 'axios'
 import '../../css/match-cards.css'
 import {connect} from 'react-redux'
 import {loadData, getMatches} from '../../redux/user.redux'
+import { Toast } from 'antd-mobile'
+
 
 @connect(
     state=>state.user,
@@ -16,6 +18,9 @@ class MatchCards extends Component {
         this.increment_i = this.increment_i.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.fillMatches = this.fillMatches.bind(this);
+        this.like = this.like.bind(this);
+        this.dislike = this.dislike.bind(this);
+
         this.state = {
             i: 0,
             loadedMatches: false
@@ -32,21 +37,12 @@ class MatchCards extends Component {
         switch(event.key) {
             case 'ArrowLeft':
                 console.log('left swipe');
-                // console.log(this.matchArray[this.i].user)
-                axios.put('/user/confirmMatch',{ user: this.props.user, match: {
-                  user: this.matchArray[this.i].user,
-                  resp: false
-                }})
-                this.increment_i();
+                this.dislike();
                 break;
             case 'ArrowRight':
                 console.log('right swipe');
-                console.log(this.matchArray[this.i].user)
-                axios.put('/user/confirmMatch',{ user: this.props.user, match: {
-                  user: this.matchArray[this.i].user,
-                  resp: true
-                }})
-                this.increment_i();
+                this.like()
+
                 break;
             default:
                 break;
@@ -61,6 +57,25 @@ class MatchCards extends Component {
             this.i++;
             this.updateState('i', this.i);
 
+    }
+
+    like() {
+      axios.put('/user/confirmMatch',{ user: this.props.user, match: {
+        user: this.matchArray[this.i].user,
+        resp: true
+      }})
+
+      this.increment_i();
+
+    }
+
+    dislike() {
+      axios.put('/user/confirmMatch',{ user: this.props.user, match: {
+        user: this.matchArray[this.i].user,
+        resp: false
+      }})
+
+      this.increment_i();
     }
 
     fillMatches(userVal) {
@@ -115,8 +130,8 @@ class MatchCards extends Component {
                           </div>
                           <div className="card-middle">{}</div>
                           <div className="card-bottom">{}</div>
-                          <button className="card-button pass" onClick={() => {this.increment_i()}}>Pass</button>
-                          <button className="card-button like" onClick={() => {this.increment_i()}}>Like</button>
+                          <button className="card-button pass" onClick={() => {this.dislike()}}>Pass</button>
+                          <button className="card-button like" onClick={() => {this.like()}}>Like</button>
                       </div>
                   </div>
               ):null}
