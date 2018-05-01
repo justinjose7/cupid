@@ -1,14 +1,15 @@
 import React from 'react'
+import '../../css/match-cards.css'
 import PropTypes from 'prop-types'
 
 const MatchArrayItem = ({avatar, user }) => (
   <li
+style={{listStyle: 'none', textAlign: 'center', font: 'Arial', width: '150px'}}
     //onClick={onClick}
   >
     <div>
-      <img className="img" src={avatar} />
+      <img className="user-icon" src={avatar} />
     </div>
-    {avatar}
     {user}
   </li>
 )
