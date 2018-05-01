@@ -14,8 +14,6 @@ class MatchArray extends React.Component {
     constructor(props) {
         super(props);
         this.updateState = this.updateState.bind(this);
-        this.increment_i = this.increment_i.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
         this.fillMatches = this.fillMatches.bind(this);
         this.state = {
             i: 0,
@@ -28,30 +26,11 @@ class MatchArray extends React.Component {
         window.addEventListener("keydown", this.handleKeyPress);
     };
 
-    handleKeyPress (event) {
-        switch(event.key) {
-            case 'ArrowLeft':
-                console.log('left swipe');
-                this.increment_i();
-                break;
-            case 'ArrowRight':
-                console.log('right swipe');
-                this.increment_i();
-                break;
-            default:
-                break;
-        }
-    };
 
     updateState(key, value) {
         this.setState({ [key]: value});
     };
 
-    increment_i() {
-            this.i++;
-            this.updateState('i', this.i);
-
-    }
 
     fillMatches(userVal) {
       this.updateState('loadedMatches', true)
@@ -89,24 +68,9 @@ class MatchArray extends React.Component {
                 <div style= {{paddingTop:'25px'}}>
                   <MatchArrayContainer />
                 </div>
-                  // <div>
-                  //     <div className="stack-container">
-                  //         <div className="card-top">
-                  //             <div className="img-card"><img className="img" src={matchArray[this.state.i].avatar} /></div>
-                  //             <div className="name-header-card" ><b>{matchArray[this.state.i].name}</b></div>
-                  //             <div className="text-card">{matchArray[this.state.i].distance} </div>
-                  //             <div className="text-card"><i>{matchArray[this.state.i].desc}</i></div>
-                  //
-                  //         </div>
-                  //         <div className="card-middle">{}</div>
-                  //         <div className="card-bottom">{}</div>
-                  //         <button className="card-button pass" onClick={() => {this.increment_i()}}>Pass</button>
-                  //         <button className="card-button like" onClick={() => {this.increment_i()}}>Like</button>
-                  //     </div>
-                  // </div>
               ):null}
               return (
-                <div className="no-cards-left">Lol u got no frens...</div>
+                <div className="no-cards-left">No matches. Start liking people who might like you back.</div>
               );
 
     }
