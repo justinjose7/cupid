@@ -37,8 +37,6 @@ class MatchArray extends React.Component {
       this.updateState('loadedMatches', true)
       // this.props.getMatches({user: userVal});
       this.props.getMatchArray({user:userVal});
-      console.log("did it work?")
-      console.log(this.props.payload);
 
     }
     i=0

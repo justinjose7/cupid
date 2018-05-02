@@ -13,6 +13,9 @@ class UserCard extends React.Component{
 
     constructor(props) {
         super(props)
+        this.state = {
+          pleaseUpdate: true,
+        }
     }
 
     render() {
@@ -23,6 +26,9 @@ class UserCard extends React.Component{
         var viewedUserIndex = props.match.viewedUser
 
         console.log(props.match)
+        if (props.match.matches[viewedUserIndex] == null){
+          return null;
+        }
         return props.match.userClicked?(
                 <div className="stack-container">
                     <div className="card-top card" style={ {'height':'auto'}}>
