@@ -7,6 +7,7 @@ import Student from '../../component/student/student'
 import User from '../../component/user/user'
 import MatchCards from '../match-cards/match-cards'
 import MatchArray from '../match-array/match-array'
+import Profile from '../../container/profile/profile'
 import {getMsgList,recvMsg} from '../../redux/chat.redux'
 import { slide as Menu } from 'react-burger-menu'
 import {logoutSubmit} from '../../redux/user.redux'
@@ -57,11 +58,11 @@ class Dashboard extends React.Component {
                 component:MatchCards,
             },
             {
-                path:'/',
-                text:'People Nearby',
+                path:'/profile',
+                text:'Update Profile',
                 icon:'job',
-                title:'People Nearby',
-                component:MatchCards,
+                title:'Update Profile',
+                component:Profile,
             },
             {
                 path:'/matches',
@@ -81,7 +82,7 @@ class Dashboard extends React.Component {
 
         return props.user?(
             <div>
-                <Menu right noOverlay id="menu-dashboard">
+                <Menu left noOverlay id="menu-dashboard">
                   <Link to="/nearby" className="menu-item" >People Nearby</Link>
                   <Link to="/matches" id="matches" className="menu-item" >Matches</Link>
                   <Link to="/myprofile" id="profile" className="menu-item" href="/myprofile">My Profile</Link>

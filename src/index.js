@@ -18,6 +18,7 @@ import Register from './container/register/register'
 import AuthRoute from './component/authroute/authroute'
 import Profile from './container/profile/profile'
 import Dashboard from './component/dashboard/dashboard'
+import Navbar from './component/navbar/navbar'
 import Chat from './component/chat/chat'
 import SurveyCards from './container/survey/surveyCards'
 import { slide as Menu } from 'react-burger-menu'
@@ -33,6 +34,7 @@ ReactDom.render(
     (<Provider store={store}>
         <BrowserRouter>
             <div>
+              <Navbar> </Navbar>
                 <AuthRoute></AuthRoute>
                 <Switch>
                     <Route path='/survey' component={SurveyCards}></Route>

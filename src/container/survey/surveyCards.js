@@ -118,6 +118,9 @@ class SurveyCards extends Component {
         if (this.i != this.cardData.length){
             return (
                 <div>
+                  <div id="nav-bar">
+                      <a className="nav-item" id ="cupid-logo" href="/nearby">Cupid</a>
+                  </div>
                     <div className="stack-container">
                         <div className="card-top">
                             <div className="text-card-this">{this.cardData[this.state.i].question} </div>
@@ -132,6 +135,9 @@ class SurveyCards extends Component {
         }
         return (
             <div>
+              <div id="nav-bar">
+                  <a className="nav-item" id ="cupid-logo" href="/nearby">Cupid</a>
+              </div>
                     <div className="nothing-left" {...this.surveyFinished()}>No more cards left</div>
                     <Redirect to='/nearby' />
             </div>

@@ -121,15 +121,15 @@ class MatchCards extends Component {
               return this.props.user? (
                   <div>
                       <div className="stack-container">
-                          <div className="card-top">
-                              <div className="img-card"><img className="img" src={this.matchArray[this.state.i].avatar} /></div>
+                          <div className="card-top card">
+                              <div className="img-card"><img className="img" src={(this.matchArray[this.state.i].avatar)?this.matchArray[this.state.i].avatar:"https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-256.png"} /></div>
                               <div className="name-header-card" ><b>{this.matchArray[this.state.i].name}</b></div>
                               <div className="text-card">{Math.round(this.matchArray[this.state.i].dist)} miles away</div>
                               <div className="text-card"><i>{this.matchArray[this.state.i].desc}</i></div>
 
                           </div>
-                          <div className="card-middle">{}</div>
-                          <div className="card-bottom">{}</div>
+                          <div className="card-middle card">{}</div>
+                          <div className="card-bottom card">{}</div>
                           <button className="card-button pass" onClick={() => {this.dislike()}}>Pass</button>
                           <button className="card-button like" onClick={() => {this.like()}}>Like</button>
                       </div>

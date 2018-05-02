@@ -39,7 +39,15 @@ class Register extends React.Component{
 		return (
 			<div>
 				{((this.props.redirectTo) && (this.props.redirectTo != '/login'))? <Redirect to={this.props.redirectTo} />:null}
-				<section className="box-signup-form">
+				<div id="nav-bar">
+						<a className="nav-item" id ="cupid-logo" href="/nearby">Cupid</a>
+						<ul id="nav-links">
+							<a href="#one"><li className="nav-item"> Meet </li></a>
+							<a href="#two"><li className="nav-item"> Match </li></a>
+							<a href="#three"><li className="nav-item"> Message </li></a>
+						</ul>
+				</div>
+				<section className="box-signup-form card">
 					<h1 className= "header-title">Cupid</h1>
 					<p className= "header-signup">Sign up</p>
 					<br/>
@@ -101,6 +109,8 @@ class Register extends React.Component{
 					{this.props.msg?<p className='error-msg'>{this.props.msg}</p>:null}
 
 				</section>
+				<div className='login-content'>
+				</div>
 
 			</div>
 

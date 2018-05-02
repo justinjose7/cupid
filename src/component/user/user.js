@@ -1,9 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Switch,Route,Link,Redirect} from 'react-router-dom'
 import {List, Modal} from 'antd-mobile'
 import browserCookies from 'browser-cookies'
 import {logoutSubmit} from '../../redux/user.redux'
-import {Redirect} from 'react-router-dom'
 import '../../css/my-profile.css'
 @connect(
     state=>state.user,
@@ -37,10 +37,13 @@ class User extends React.Component{
         console.log(props)
         return props.user?(
                 <div className="stack-container">
-                    <div className="card-top">
+                    <div className="card-top card" style={ {'height':'525px'}}>
                         <div className="img-card"><img className="img" src={props.avatar} /></div>
                         <div className="name-header-card" ><b>{props.name}</b></div>
                         <div className="text-card"><i>"{props.desc}"</i></div>
+                        <br/>
+                        <Link to="/profile"><button className="signout-Btn" href="/profile">Edit Profile</button></Link>
+                        <br/>
                         <br/>
                         <button className="signout-Btn" onClick={this.logout}>Sign out</button>
 

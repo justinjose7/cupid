@@ -19,7 +19,7 @@
     margin: auto;
     text-align:center;
     width: 100%;
-    height: 500px;
+    height: 550px;
     background: #FFFFFF;
 }
 
@@ -43,7 +43,7 @@
     width:350px;
     height: 350px;
 }
-.signout-Btn {
+/* .signout-Btn {
     font-size: 14px;
     font-weight: 570;
     color: white;
@@ -67,4 +67,4 @@
     cursor: pointer;
     transition: all 0.2s ease 0s;
 
-}
+} */

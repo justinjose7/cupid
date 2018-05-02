@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import MatchArrayItem from './match-array-item'
 
 const MatchArrayPresenter = ({ match }) => (
-  <ul>
+  <ul id='matchArray' >
     {match.map((match, index) => (
       <MatchArrayItem key={index} {...match} />
     ))}
@@ -13,8 +13,7 @@ const MatchArrayPresenter = ({ match }) => (
 MatchArrayPresenter.propTypes = {
   match: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      url: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
       user: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,

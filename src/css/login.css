@@ -1,14 +1,37 @@
+@media (min-width:800px){
+  .box-login-form{
+    top: 100px;
+    position: fixed;
+    right:25px;
+    /* float: right; */
+    /* margin-right: 10px; */
+  }
+  .login-content{
+    display: block;
+  }
+}
+
+@media (max-width:800px){
+  .login-content{
+    display: none;
+  }
+}
+
+.login-content{
+  height: 5000px;
+}
+
 .box-login-form {
     border-style: solid;
     border-width: 1px;
     border-color: #E6E6E6;
     margin: auto;
     text-align:center;
-    width: 350px; 
+    width: 350px;
     height: 537px;
     background: #FFFFFF;
 }
-.loginBtn {
+/* .loginBtn {
     font-size: 14px;
     font-weight: 570;
     color: white;
@@ -32,7 +55,7 @@
     cursor: pointer;
     transition: all 0.2s ease 0s;
 
-}
+} */
 
 .login {
     border: 0;
@@ -80,14 +103,14 @@
     margin: auto;
     background:none!important;
     color:#3897F0;
-    border:none; 
+    border:none;
     padding:0!important;
     font: "Roboto";
     cursor: pointer;
 }
 
 .signupBtn:hover {
-    border-bottom:1px solid #FFF; 
+    border-bottom:1px solid #FFF;
 }
 
 .remember {

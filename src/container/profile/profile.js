@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {update} from '../../redux/user.redux'
 import { Toast } from 'antd-mobile'
-
+import {logoutSubmit} from '../../redux/user.redux'
 import Dropzone from 'react-dropzone';
+import browserCookies from 'browser-cookies'
 import request from 'superagent';
 import '../../css/profile-setup.css'
 import LocationSearchInput  from '../../component/location-search-input/location-search-input'
@@ -13,12 +14,13 @@ const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbormtzbg/image/u
 
 @connect(
   state=>state.user,
-	{update}
+	{update, logoutSubmit}
 )
 class Profile extends React.Component{
     constructor(props) {
       super(props)
       this.handleSubmission = this.handleSubmission.bind(this);
+      this.logout = this.logout.bind(this);
 
       this.state = {
         avatar: '',
@@ -32,6 +34,12 @@ class Profile extends React.Component{
     onImageDrop(files) {
         this.setState({uploadedFile: files[0]});
         this.handleImageUpload(files[0]);
+    }
+
+    logout() {
+      browserCookies.erase('userid');
+      this.props.logoutSubmit();
+      this.props.history.push('/login');
     }
 
     handleImageUpload(file) {
@@ -78,10 +86,11 @@ class Profile extends React.Component{
     render(){
       const path = this.props.location.pathname
       const redirect = this.props.redirectTo
+      console.log(this)
       return (
         <div>
           {redirect && redirect!== path ? <Redirect to={'/survey'}></Redirect> :null}
-            <div className='box-profile-form'>
+            <div className='box-profile-form card'>
                 <Dropzone
                     className='drop-box'
                     multiple={false}
@@ -105,7 +114,7 @@ class Profile extends React.Component{
                     onChange={e => this.handleChange('maxdist', e.target.value)}
                 />
                 <br/>
-                <button className="completeProfileBtn" onClick={this.handleSubmission}>Profile Complete</button>
+                <button className="completeProfileBtn" onClick={this.handleSubmission}>Update profile</button>
                 {this.state.msg?<p className='error-msg'>{this.state.msg}</p>:null}
 
             </div>
@@ -114,7 +123,7 @@ class Profile extends React.Component{
           <br/>
           <br/>
         </div>
-        )
+      )
     }
 }
 

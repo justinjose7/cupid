@@ -37,7 +37,7 @@ class Login extends React.Component{
 		return (
 			<div>
 				{this.props.redirectTo? <Redirect to={this.props.redirectTo} />:null}
-				<section className="box-login-form">
+				<section className="box-login-form card">
 			        <h2 className="header-title">Cupid</h2>
 			        <p className= "header-login">Sign in to your account</p>
 			        <br/>
@@ -78,6 +78,8 @@ class Login extends React.Component{
 			        {this.props.msg?<p className='error-msg'>{this.props.msg}</p>:null}
 
 			    </section>
+					<div className='login-content'>
+					</div>
 
 			</div>
 		)

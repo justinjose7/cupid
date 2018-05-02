@@ -14,6 +14,11 @@
   margin-bottom: 10px;
 }
 
+#matchArray{
+  text-align: center;
+  padding: 0;
+}
+
 .matchesArrayIcons {
   list-style: none;
   text-align: center;

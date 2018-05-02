@@ -3,19 +3,29 @@ body {
 }
 
 #nav-bar {
+    top:0;
     list-style-type: none;
     margin: 0em 0em 0.5em 0em;
+    height: 75px;
+    line-height:40px;
     padding: 0;
     overflow: hidden;
     border: 0 0 0 0.5px;
     border-bottom: solid #E6E6E6 2px;
     background-color: #FFF;
+    text-align: center;
+    position: fixed;
+    width: 100%;
 }
 
-#nav-item, #nav-item-other {
-    float: left;
+#nav-bar *{
+  display: inline-block;
+}
+
+.nav-item, #nav-item-other {
+    font-family: 'Proxima Nova';
+    font-weight: 600;
     display: block;
-    font-family: 'Kaushan Script', cursive;
     font-size: 16px;
     font-weight: bold;
     color: black;
@@ -23,6 +33,13 @@ body {
     text-align: center;
     padding: 14px 16px;
     cursor: pointer;
+    transition: color 0.125s;
+}
+
+#cupid-logo {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 25px;
+    margin-right: 50px;
 }
 
 #nav-item-other {
@@ -43,9 +60,15 @@ body {
     color: #D83F87;
 }
 
+#nav-links {
+  display: inline-block;
+  margin-top: 0;
+  padding: 0;
+}
+
 /* Position and sizing of burger button */
 .bm-burger-button {
-  position: absolute;
+  /* position: absolute; */
   width: 10px;
   height: 10px;
   right: 15px;
@@ -61,6 +84,7 @@ body {
 .bm-cross-button {
   height: 24px;
   width: 24px;
+  transition: color 0.25s;
 }
 
 .bm-cross-button:hover {
@@ -70,6 +94,7 @@ body {
 /* Color/shape of close button cross */
 .bm-cross {
   background: #bdc3c7;
+  transition: color 0.125s;
 }
 
 .bm-cross:hover {
@@ -96,15 +121,64 @@ body {
 
 .menu-item {
   color: black;
-  font-family: 'Roboto';
+  font-family: 'Proxima Nova';
   padding: 10px;
+  transition: color 0.125s;
 }
 
 .menu-item:hover {
   color: #D83F87;
 }
 
+.nav-item:hover {
+  color: #D83F87;
+}
+
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+
+#root{
+  margin-top: 100px;
+}
+
+@media (max-width:800px) {
+  #cupid-logo{
+    margin-right: 0;
+  }
+  #nav-links{
+    display:none;
+  }
+}
+
+.card{
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+button{
+  font: 20px 'Proxima Nova', sans-serif;
+  border: 3px rgba(0, 135, 235, 1) solid;
+  border-radius: 40px;
+  color: rgba(0, 135, 235, 1);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right:15px;
+  background-color: rgba(0,135,235,0);
+  transition: background-color 0.25s, color 0.25s, font-size 0.125s;
+  cursor: pointer;
+}
+
+button:hover {
+  font: 20px 'Proxima Nova', sans-serif;
+  border: 3px rgba(0, 135, 235, 1) solid;
+  border-radius: 40px;
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right:15px;
+  background-color: rgba(0,135,235,1);
 }

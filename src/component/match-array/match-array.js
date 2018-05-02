@@ -65,7 +65,7 @@ class MatchArray extends React.Component {
             }
             if (this.i != matchArray.length){
               return this.props.user? (
-                <div style= {{paddingTop:'25px'}}>
+                <div >
                   <MatchArrayContainer />
                 </div>
               ):null}
