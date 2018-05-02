@@ -3,7 +3,7 @@
     margin: auto;
     margin-top: 20px;
     text-align:center;
-    width: 350px; 
+    width: 350px;
     height: 600px;
 }
 
@@ -18,11 +18,11 @@
     border-color: #E6E6E6;
     margin: auto;
     text-align:center;
-    width: 100%; 
+    width: 100%;
     height: 475px;
     background: #FFFFFF;
 }
-   
+
 .card-middle {
     position: absolute;
     top: 33px;
@@ -34,7 +34,7 @@
     border-color: #E6E6E6;
     margin: auto;
     text-align:center;
-    width: 95%; 
+    width: 95%;
     height: 450px;
     background: #FFFFFF;
 
@@ -50,7 +50,7 @@
     border-color: #E6E6E6;
     margin: auto;
     text-align:center;
-    width: 90%; 
+    width: 90%;
     height: 425px;
     background: #FFFFFF;
 
@@ -72,29 +72,40 @@
     border-radius: 50px;
     margin: auto;
     text-align:center;
-    width: 70px; 
+    width: 70px;
     height: 70px;
 
 }
+.swipeDiv{
+  width: 350px;
+  z-index: 5;
+  position: fixed;
+  top: 650px;
+  text-align: center;
+
+}
 .pass {
-    background: #DD4132;
+    background: #CC0005;
     left: 50px;
+    display: inline-block;
 }
 
 .like {
-    background: #79C793;
+    background: #0ACF00;
     right: 50px;
+    display: inline-block;
 }
 
 .name-header-card {
-    font-family: 'Roboto';
+    font-family: 'Proxima Nova';
+    font-size: 22px;
     text-align: left;
     margin-top: 10px;
     margin-left: 20px;
 }
 
 .text-card-this {
-    font-family: 'Roboto';
+    font-family: 'Proxima Nova';
     font-weight: 600;
     font-size: 50px;
     text-align: left;
@@ -112,7 +123,7 @@
     text-align: center;
     left: 0;
     right: 0;
-    font-family: 'Roboto';
+    font-family: 'Proxima Nova';
     font-size: 30px;
     font-weight: 600;
 }

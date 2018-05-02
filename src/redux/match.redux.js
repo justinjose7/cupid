@@ -4,13 +4,28 @@ export const MATCH_ACCEPT = 'MATCH_ACCEPT'
 export const MATCH_DECLINE = 'MATCH_DECLINE'
 export const UPDATE_MATCH_ARRAY = 'UPDATE_MATCH_ARRAY'
 export const ERROR_MSG = 'ERROR_MSG'
+export const USER_CLICKED = 'USER_CLICKED'
 
+const initState = {
+  matches:[],
+  userClicked: false,
+  viewedUser: ''
+}
 //reducer
-export function match(state = [], action){
+export function match(state = initState, action){
   switch (action.type){
     case UPDATE_MATCH_ARRAY:
         console.log('getting to this point')
-        return action.payload
+        return {
+          ...state,
+          matches: action.payload
+        }
+    case USER_CLICKED:
+        return {
+          ...state,
+          userClicked: true,
+          viewedUser: action.payload
+        }
     default:
       return state
   }
@@ -18,6 +33,10 @@ export function match(state = [], action){
 
 function errorMsg(msg) {
     return {msg, type:ERROR_MSG}
+}
+
+export function displayUser(payload){
+  return {type:USER_CLICKED, payload}
 }
 
 export function returnMatchArray(payload) {

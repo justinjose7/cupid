@@ -1,46 +1,37 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import {Card, WhiteSpace,WingBlank} from 'antd-mobile'
-import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {Switch,Route,Link,Redirect} from 'react-router-dom'
+import {List, Modal} from 'antd-mobile'
+import browserCookies from 'browser-cookies'
+import {logoutSubmit} from '../../redux/user.redux'
+import '../../css/my-profile.css'
+@connect(
+    state=>state,
+)
 
-@withRouter
 class UserCard extends React.Component{
-    static propTypes = {
-        userlist: PropTypes.array.isRequired
+
+    constructor(props) {
+        super(props)
     }
 
-    handleClick(v) {
-        this.props.history.push(`/chat/${v._id}`)
-    }
     render() {
+        const props = this.props
+        const stateStuff = this.state
+        console.log(props)
 
-        const Header = Card.Header
-        const Body = Card.Body
+        var viewedUserIndex = props.match.viewedUser
 
-        return (
-            <WingBlank>
-                <WhiteSpace></WhiteSpace>
-                {this.props.userlist.map(v=>(
-                    v.avatar?(
-                    <Card
-                        key={v._id}
-                        onClick={()=>this.handleClick(v)}
-                    >
-                    <p>{v.user}</p>
-                    <img src={v.avatar} width="300" height="300"/>
-                        <Body>
-                            {v.type=='boss'?<div>公司：{v.company}</div>:null}
-                            {v.desc.split(' ').map(d=>(
-                                <div key={d}>
-                                    {d}
-                                </div>
-                            ))}
-                            {v.type=='boss'?<div>薪资：{v.money}</div>:null}
-                        </Body>
-                    </Card>):null
-                ))}
-            </WingBlank>
-        )
+        console.log(props.match)
+        return props.match.userClicked?(
+                <div className="stack-container">
+                    <div className="card-top card" style={ {'height':'auto'}}>
+                        <div className="img-card"><img className="img" src={props.match.matches[viewedUserIndex].avatar} /></div>
+                        <div className="name-header-card" ><b>{props.match.matches[viewedUserIndex].name}</b></div>
+                        <div className="text-card"><i>{props.match.matches[viewedUserIndex].desc}</i></div>
+                    </div>
+                </div>
+        ):null
     }
 }
 

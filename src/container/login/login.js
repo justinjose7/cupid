@@ -61,7 +61,7 @@ class Login extends React.Component{
 					        <br/>
 					       	<br/>
 					        <button
-					            className="loginBtn"
+					            className="loginBtn button"
 					            onClick={ this.handleLogin } type='primary'>Log in</button>
 					        <br/>
 					        <br/>
@@ -70,7 +70,7 @@ class Login extends React.Component{
 					        <button
 					            className="signupBtn"
 					            id="signup-button"
-					            onClick={ this.register }
+					            onClick={ this.register } style={{'font-family':'Proxima Nova'}}
 					        >Sign up</button>
 
 				        </div>

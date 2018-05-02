@@ -7,7 +7,7 @@ import MatchArrayContainer from './match-array-container'
 
 @connect(
     state=>state,
-    {getMatchArray}
+    {getMatchArray, }
 )
 
 class MatchArray extends React.Component {
@@ -24,6 +24,7 @@ class MatchArray extends React.Component {
 
     componentDidMount() {
         window.addEventListener("keydown", this.handleKeyPress);
+        console.log(this.state)
     };
 
 
@@ -55,7 +56,7 @@ class MatchArray extends React.Component {
               return null;
             } else {
                 console.log(this.props.match)
-                const payload_val = this.props.match;
+                const payload_val = this.props.match.matches;
                 const keys = Object.keys(payload_val);
                 keys.forEach(function(key) {
                     matchArray = matchArray.concat([ payload_val[key] ]);

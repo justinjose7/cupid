@@ -28,7 +28,7 @@
     margin: auto;
     text-align:center;
     width: 350px;
-    height: 537px;
+    height: auto;
     background: #FFFFFF;
 }
 /* .loginBtn {
@@ -56,6 +56,10 @@
     transition: all 0.2s ease 0s;
 
 } */
+
+.loginBtn {
+  font-family: 'Proxima Nova'
+}
 
 .login {
     border: 0;
@@ -86,7 +90,7 @@
 
 
 .header-login {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Proxima Nova', sans-serif;
     color: black;
     text-align:center;
     margin: 0.3em auto;

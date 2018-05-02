@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 import {update} from '../../redux/user.redux'
 import { Toast } from 'antd-mobile'
 import {logoutSubmit} from '../../redux/user.redux'
@@ -22,17 +22,17 @@ class Navbar extends React.Component{
       console.log(this)
       return this.props.user?(
           <div id="nav-bar">
-              <a className="nav-item" id ="cupid-logo" href="/nearby">Cupid</a>
+              <Link className="nav-item" id ="cupid-logo" to="/nearby">Cupid</Link>
               <ul id="nav-links">
-                <a href="/nearby"><li className="nav-item"> People Nearby </li></a>
-                <a href="/matches"><li className="nav-item"> Matches </li></a>
-                <a href="/myprofile"><li className="nav-item"> My Profile </li></a>
+                <Link to="/nearby"><li className="nav-item"> People Nearby </li></Link>
+                <Link to="/matches"><li className="nav-item"> Matches </li></Link>
+                <Link to="/myprofile"><li className="nav-item"> My Profile </li></Link>
                 <div id="hamburger-menu"></div>
               </ul>
           </div>
         ):(
           <div id="nav-bar">
-              <a className="nav-item" id ="cupid-logo" href="/nearby">Cupid</a>
+              <Link className="nav-item" id ="cupid-logo" to="/login">Cupid</Link>
               <ul id="nav-links">
                 <a href="#one"><li className="nav-item"> Meet </li></a>
                 <a href="#two"><li className="nav-item"> Match </li></a>

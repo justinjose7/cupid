@@ -49,7 +49,7 @@ class Register extends React.Component{
 				</div>
 				<section className="box-signup-form card">
 					<h1 className= "header-title">Cupid</h1>
-					<p className= "header-signup">Sign up</p>
+					<p className= "header-signup">Create an account and join the fun!</p>
 					<br/>
 					<div tabIndex="0" role="document">
 						<div className="form-signup">
@@ -92,7 +92,7 @@ class Register extends React.Component{
 							<br/>
 
 							<button
-								className="signup-Btn"
+								className="signup-Btn button"
 								onClick={ this.handleRegister }
 							>Sign up</button>
 
@@ -101,7 +101,7 @@ class Register extends React.Component{
 							<p className="header-signup">Already have an account?</p>
 							<button
 								className="login-Btn"
-								onClick={this.login}
+								onClick={this.login} style={{'font-family':'Proxima Nova'}}
 							>Log in</button>
 
 						</div>

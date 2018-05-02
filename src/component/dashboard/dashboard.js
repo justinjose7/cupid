@@ -58,6 +58,13 @@ class Dashboard extends React.Component {
                 component:MatchCards,
             },
             {
+                path:'/',
+                text:'People Nearby',
+                icon:'job',
+                title:'People Nearby',
+                component:MatchCards,
+            },
+            {
                 path:'/profile',
                 text:'Update Profile',
                 icon:'job',
@@ -86,8 +93,6 @@ class Dashboard extends React.Component {
                   <Link to="/nearby" className="menu-item" >People Nearby</Link>
                   <Link to="/matches" id="matches" className="menu-item" >Matches</Link>
                   <Link to="/myprofile" id="profile" className="menu-item" href="/myprofile">My Profile</Link>
-                  <Link to="/profile" id="settings" className="menu-item" href="/profile">Update Profile</Link>
-                  <a className="menu-item" onClick={this.logout}>Sign Out</a>
                 </Menu>
                 <Switch>
                     {navList.map(v=>(

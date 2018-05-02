@@ -1,13 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MatchArrayItem from './match-array-item'
+import UserCard from '../usercard/usercard'
+const USER_CLICKED = 'USER_CLICKED'
 
-const MatchArrayPresenter = ({ match }) => (
-  <ul id='matchArray' >
-    {match.map((match, index) => (
-      <MatchArrayItem key={index} {...match} />
-    ))}
-  </ul>
+const MatchArrayPresenter = ({ match, onMatchClick }) => (
+  <div>
+    <ul id='matchArray' >
+      {match.map((match, index) => (
+        <MatchArrayItem onClick={() => onMatchClick(index)} key={index} {...match} />
+      ))}
+    </ul>
+    <UserCard> </UserCard>
+  </div>
 )
 
 MatchArrayPresenter.propTypes = {

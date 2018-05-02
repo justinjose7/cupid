@@ -20,6 +20,8 @@ class MatchCards extends Component {
         this.fillMatches = this.fillMatches.bind(this);
         this.like = this.like.bind(this);
         this.dislike = this.dislike.bind(this);
+        this.swipeRight = this.swipeRight.bind(this);
+        this.swipeLeft - this.swipeLeft.bind(this);
 
         this.state = {
             i: 0,
@@ -65,6 +67,8 @@ class MatchCards extends Component {
         resp: true
       }})
 
+      this.swipeRight();
+
       this.increment_i();
 
     }
@@ -75,7 +79,31 @@ class MatchCards extends Component {
         resp: false
       }})
 
+      this.swipeLeft();
+
       this.increment_i();
+    }
+
+    swipeLeft() {
+      console.log('swiped left')
+      // var elem = document.getElementByClass("card-top");
+      // var pos = 0;
+      // var id = setInterval(frame, 5);
+      // function frame() {
+      //     if (pos == 350) {
+      //         clearInterval(id);
+      //     } else {
+      //         pos++;
+      //         elem.style.top = pos + 'px';
+      //         elem.style.left = pos + 'px';
+      //     }
+      // }
+
+      this.render()
+    }
+
+    swipeRight() {
+      this.render()
     }
 
     fillMatches(userVal) {
@@ -97,6 +125,7 @@ class MatchCards extends Component {
     i = 0;
     render() {
             // let matchArray = [];
+            let noPicture = 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-256.png';
 
             if (this.props.user != '' && this.state.loadedMatches == false){
                 console.log(this.props.user)
@@ -122,16 +151,29 @@ class MatchCards extends Component {
                   <div>
                       <div className="stack-container">
                           <div className="card-top card">
-                              <div className="img-card"><img className="img" src={(this.matchArray[this.state.i].avatar)?this.matchArray[this.state.i].avatar:"https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-256.png"} /></div>
+                              <div className="img-card"><img className="img" src={(this.matchArray[this.state.i].avatar)?this.matchArray[this.state.i].avatar:noPicture} /></div>
                               <div className="name-header-card" ><b>{this.matchArray[this.state.i].name}</b></div>
-                              <div className="text-card">{Math.round(this.matchArray[this.state.i].dist)} miles away</div>
+                              <div className="text-card" style={{'color': 'rgb(190,190,190)'}}>{Math.round(this.matchArray[this.state.i].dist)} miles away</div>
                               <div className="text-card"><i>{this.matchArray[this.state.i].desc}</i></div>
-
                           </div>
-                          <div className="card-middle card">{}</div>
-                          <div className="card-bottom card">{}</div>
-                          <button className="card-button pass" onClick={() => {this.dislike()}}>Pass</button>
-                          <button className="card-button like" onClick={() => {this.like()}}>Like</button>
+                          {this.matchArray[this.state.i+1]?(
+                            <div className="card-middle card">
+                              <div className="img-card"><img className="img" src={(this.matchArray[this.state.i+1].avatar)?this.matchArray[this.state.i+1].avatar:noPicture} /></div>
+                              <div className="name-header-card" ><b>{this.matchArray[this.state.i+1].name}</b></div>
+                              <div className="text-card" style={{'color': 'rgb(190,190,190)'}}>{Math.round(this.matchArray[this.state.i+1].dist)} miles away</div>
+                              <div className="text-card"><i>{this.matchArray[this.state.i+1].desc}</i></div>
+                            </div>
+                          ):null
+                          }
+                          {this.matchArray[this.state.i+2]?(
+                            <div className="card-bottom card">
+                            </div>
+                          ):null
+                          }
+                          <div className="swipeDiv">
+                            <button className="card-button pass" onClick={() => {this.dislike()}}>Pass</button>
+                            <button className="card-button like" onClick={() => {this.like()}}>Like</button>
+                          </div>
                       </div>
                   </div>
               ):null}

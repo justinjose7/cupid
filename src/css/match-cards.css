@@ -22,7 +22,7 @@
 .matchesArrayIcons {
   list-style: none;
   text-align: center;
-  font-family: 'Roboto';
+  font-family: 'Proxima Nova';
   font-size: 17px;
   width: 150px;
   display: inline-block;
@@ -59,7 +59,7 @@
     width: 95%;
     height: 450px;
     background: #FFFFFF;
-
+    opacity: .8;
 }
 
 .card-bottom {
@@ -75,7 +75,7 @@
     width: 90%;
     height: 425px;
     background: #FFFFFF;
-
+    opacity: .5;
 }
 
 .card-button {
@@ -88,7 +88,7 @@
     border-color: #E6E6E6;
     color: white;
     outline:none;
-    font-family: 'Roboto';
+    font-family: 'Proxima Nova';
     font-weight: 700;
     font-size: 15px;
     border-radius: 50px;
@@ -99,24 +99,19 @@
 
 }
 .pass {
-    background: #DD4132;
+    background: #CC0005;
     left: 50px;
+    position: fixed;
 }
 
 .like {
     background: #79C793;
     right: 50px;
-}
-
-.name-header-card {
-    font-family: 'Roboto';
-    text-align: left;
-    margin-top: 10px;
-    margin-left: 20px;
+    position: fixed;
 }
 
 .text-card {
-    font-family: 'Roboto';
+    font-family: 'Proxima Nova';
     text-align: left;
     margin-top: 10px;
     margin-left: 20px;
@@ -133,7 +128,14 @@
     text-align: center;
     left: 0;
     right: 0;
-    font-family: 'Roboto';
+    font-family: 'Proxima Nova';
     font-size: 25px;
     font-weight: 600;
+}
+
+.name-header-card {
+    font-family: 'Proxima Nova';
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 20px;
 }

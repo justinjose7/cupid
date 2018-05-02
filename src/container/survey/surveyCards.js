@@ -122,13 +122,21 @@ class SurveyCards extends Component {
                       <a className="nav-item" id ="cupid-logo" href="/nearby">Cupid</a>
                   </div>
                     <div className="stack-container">
-                        <div className="card-top">
+                        <div className="card-top card">
                             <div className="text-card-this">{this.cardData[this.state.i].question} </div>
                         </div>
-                        <div className="card-middle">{}</div>
-                        <div className="card-bottom">{}</div>
-                        <button className="card-button pass" onClick={() => {this.reject()}}>No</button>
-                        <button className="card-button like" onClick={() => {this.like()}}>Yes</button>
+                        {this.cardData[this.state.i+1]?(
+                          <div className="card-middle card">{}</div>
+                        ):null
+                        }
+                        {this.cardData[this.state.i+2]?(
+                          <div className="card-bottom card">{}</div>
+                        ):null
+                        }
+                        <div className="swipeDiv">
+                          <button className="card-button pass" onClick={() => {this.dislike()}}>No</button>
+                          <button className="card-button like" onClick={() => {this.like()}}>Yes</button>
+                        </div>
                     </div>
                 </div>
             );

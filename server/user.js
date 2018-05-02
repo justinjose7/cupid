@@ -86,9 +86,10 @@ Router.post('/getMatches', function(req, res) {
 									, "name": _.get(matchedUserData, "name")
 									, "commonInterests": commonInterests
 									, "desc": _.get(matchedUserData, "desc")
-                }
-							}));
-					}
+                };
+							})
+            );});
+          }
 
 					// discrepancy; let's return what we have so far
 					return acc;

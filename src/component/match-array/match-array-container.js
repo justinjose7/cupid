@@ -1,21 +1,36 @@
 import { connect } from 'react-redux'
-import { match, getMatchArray } from '../../redux/match.redux'
+import { match, getMatchArray, displayUser } from '../../redux/match.redux'
 import MatchArrayPresenter from './match-array-presenter'
+import UserCard from '../usercard/usercard'
+const USER_CLICKED = 'USER_CLICKED'
 
 const getVisibleMatches = (match) => {
   return match
 }
 
-const mapStateToProps = state => {
-  return {
-    match: state.match
+const mapStateToProps = (state, action)=> {
+  switch(action.type){
+    case USER_CLICKED:
+      console.log(state)
+      return {
+        ...state,
+        userClicked: true,
+        viewedUser: action.payload
+      }
+    default:
+      return {
+        match:state.match.matches
+      }
   }
+  // return {
+  //   match: state.match
+  // }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTodoClick: id => {
-      // dispatch(toggleTodo(id))
+    onMatchClick: id => {
+      dispatch(displayUser(id))
     }
   }
 }
@@ -23,6 +38,6 @@ const mapDispatchToProps = dispatch => {
 const MatchArrayContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(MatchArrayPresenter)
+)(MatchArrayPresenter, UserCard)
 
 export default MatchArrayContainer

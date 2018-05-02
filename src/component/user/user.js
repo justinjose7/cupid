@@ -20,9 +20,9 @@ class User extends React.Component{
     logout() {
 
         const alert = Modal.alert
-        alert('Sign out', 'Are you sure?', [
+        alert('See you later!', 'Are you sure you want to sign out?', [
             { text: 'Cancel', onPress: () => console.log('cancel') },
-            { text: 'Log out', onPress: () => {
+            { text: 'Sign out', onPress: () => {
                 browserCookies.erase('userid')
                 this.props.logoutSubmit()
             }},
@@ -37,15 +37,15 @@ class User extends React.Component{
         console.log(props)
         return props.user?(
                 <div className="stack-container">
-                    <div className="card-top card" style={ {'height':'525px'}}>
+                    <div className="card-top card" style={ {'height':'auto'}}>
                         <div className="img-card"><img className="img" src={props.avatar} /></div>
                         <div className="name-header-card" ><b>{props.name}</b></div>
                         <div className="text-card"><i>"{props.desc}"</i></div>
                         <br/>
-                        <Link to="/profile"><button className="signout-Btn" href="/profile">Edit Profile</button></Link>
+                        <Link to="/profile"><button className="signout-Btn button" href="/profile">Edit Profile</button></Link>
                         <br/>
                         <br/>
-                        <button className="signout-Btn" onClick={this.logout}>Sign out</button>
+                        <button className="signout-Btn button" onClick={this.logout}>Sign out</button>
 
                     </div>
                 </div>

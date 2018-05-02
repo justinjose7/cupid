@@ -1,5 +1,6 @@
 body {
     background: #FAFAFA;
+    font-family: 'Proxima Nova'
 }
 
 #nav-bar {
@@ -16,6 +17,7 @@ body {
     text-align: center;
     position: fixed;
     width: 100%;
+    z-index: 5;
 }
 
 #nav-bar *{
@@ -57,7 +59,7 @@ body {
 
 #nav-item:hover {
     background-color: white;
-    color: #D83F87;
+    color: #CB0077;
 }
 
 #nav-links {
@@ -88,7 +90,7 @@ body {
 }
 
 .bm-cross-button:hover {
-  color: #D83F87
+  color: #CB0077
 }
 
 /* Color/shape of close button cross */
@@ -98,7 +100,7 @@ body {
 }
 
 .bm-cross:hover {
-  background: #D83F87;
+  background: #CB0077;
 }
 
 /* General sidebar styles */
@@ -127,11 +129,11 @@ body {
 }
 
 .menu-item:hover {
-  color: #D83F87;
+  color: #CB0077;
 }
 
 .nav-item:hover {
-  color: #D83F87;
+  color: #CB0077;
 }
 
 /* Styling of overlay */
@@ -155,11 +157,15 @@ body {
 .card{
   border-radius: 25px;
   overflow: hidden;
+  height: auto;
+  padding-bottom: 30px;
+  box-shadow: 0px 5px 75px rgba(0,0,0,0.25);
+  border-color: rgba(0,0,0,0)
 }
 
 button{
   font: 20px 'Proxima Nova', sans-serif;
-  border: 3px rgba(0, 135, 235, 1) solid;
+  border: 2px rgba(0, 135, 235, 1) solid;
   border-radius: 40px;
   color: rgba(0, 135, 235, 1);
   padding-top: 5px;
@@ -167,11 +173,12 @@ button{
   padding-left: 15px;
   padding-right:15px;
   background-color: rgba(0,135,235,0);
-  transition: background-color 0.25s, color 0.25s, font-size 0.125s;
+  transition: background-color 0.15s, color 0.125s, font-size 0.125s;
   cursor: pointer;
+  width: 70%;
 }
 
-button:hover {
+.button:hover {
   font: 20px 'Proxima Nova', sans-serif;
   border: 3px rgba(0, 135, 235, 1) solid;
   border-radius: 40px;
@@ -181,4 +188,36 @@ button:hover {
   padding-left: 15px;
   padding-right:15px;
   background-color: rgba(0,135,235,1);
+}
+
+.button{
+  font: 15px 'Proxima Nova', sans-serif;
+  border: 2rpx rgba(0, 135, 235, 1) solid;
+  border-radius: 40px;
+  color: rgba(0, 135, 235, 1);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right:15px;
+  background-color: rgba(0,135,235,0);
+  transition: background-color 0.125s, color 0.125s, font-size 0.125s, border 0.125s;
+  cursor: pointer;
+}
+
+.am-modal{
+  font-family: 'Proxima Nova';
+}
+
+.am-modal-header{
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.login, .signup{
+  font-family: 'Proxima Nova';
+  text-align: center;
+}
+input{
+  border-radius: 40px;
+  text-align: center;
 }
