@@ -71,14 +71,21 @@ Router.post('/getMatches', function(req, res) {
 					if(otherMatches) {
 						// look up the user data
 						// then concat to the array ASAH DOOD
-
+						return User.findOne({ "user": user }).exec()
+						.then(userInfoObj => {
 						return _.concat([], acc,
 							User.findOne({ "user": match }).exec()
               .then(matchedUserData => {
+							const commonInterests = _.reduce(_.get(matchUser_toUsers(userInfoObj, [ userInfoObj, matchedUserData ])[1], "commonInterests"), (acc, val, key) => {
+								if(val) return _.concat([], acc, [ key ]);
+								else return acc;
+							}, []);
                 return {
 									 "user": match
 									, "avatar": _.get(matchedUserData, "avatar")
 									, "name": _.get(matchedUserData, "name")
+									, "commonInterests": commonInterests
+									, "desc": _.get(matchedUserData, "desc")
                 }
 							}));
 					}
