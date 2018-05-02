@@ -16,7 +16,7 @@ class MatchCards extends Component {
         super(props);
         this.updateState = this.updateState.bind(this);
         this.increment_i = this.increment_i.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
+        //this.handleKeyPress = this.handleKeyPress.bind(this);
         this.fillMatches = this.fillMatches.bind(this);
         this.like = this.like.bind(this);
         this.dislike = this.dislike.bind(this);
@@ -32,10 +32,10 @@ class MatchCards extends Component {
     };
 
     componentDidMount() {
-        window.addEventListener("keydown", this.handleKeyPress);
+        //window.addEventListener("keydown", this.handleKeyPress);
     };
 
-    handleKeyPress (event) {
+    /*handleKeyPress (event) {
         switch(event.key) {
             case 'ArrowLeft':
                 console.log('left swipe');
@@ -49,7 +49,7 @@ class MatchCards extends Component {
             default:
                 break;
         }
-    };
+    };*/
 
     updateState(key, value) {
         this.setState({ [key]: value});
@@ -177,7 +177,7 @@ class MatchCards extends Component {
                       </div>
                   </div>
               ):null}
-              window.removeEventListener("keydown", this.handleKeyPress);
+              //window.removeEventListener("keydown", this.handleKeyPress);
               return (
                 <div className="no-cards-left">No more people left...</div>
               );
