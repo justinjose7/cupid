@@ -1,15 +1,14 @@
-@media (min-width:800px){
+/*@media (min-width:800px){
   .box-login-form{
     top: 100px;
     position: fixed;
-    right:25px;
     /* float: right; */
-    /* margin-right: 10px; */
+    /* margin-right: 10px; 
   }
   .login-content{
     display: block;
   }
-}
+}*/
 
 @media (max-width:800px){
   .login-content{
