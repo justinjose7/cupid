@@ -134,7 +134,7 @@ class SurveyCards extends Component {
                         ):null
                         }
                         <div className="swipeDiv">
-                          <button className="card-button pass" onClick={() => {this.dislike()}}>No</button>
+                          <button className="card-button pass" onClick={() => {this.reject()}}>No</button>
                           <button className="card-button like" onClick={() => {this.like()}}>Yes</button>
                         </div>
                     </div>
