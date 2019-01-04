@@ -10,29 +10,6 @@ import '../../css/login.css'
 	{login}
 )
 class Login extends React.Component{
-	constructor(props) {
-		super(props)
-		this.state = {
-			user:'',
-			pwd:''
-		}
-		this.register = this.register.bind(this)
-		this.handleLogin = this.handleLogin.bind(this)
-	}
-
-	register(){
-		this.props.history.push('/register') //cookiesave
-	}
-
-	handleChange(key,val){
-		this.setState({
-			[key]:val
-		})
-		console.log(key, val)
-	}
-	handleLogin(){
-		this.props.login(this.state)
-	}
 	render(){
 		return (
 			<div>
@@ -40,47 +17,32 @@ class Login extends React.Component{
 				<section className="box-login-form card">
 			        <h2 className="header-title">Cupid</h2>
 			        <p className= "header-login">Sign in to your account</p>
-			        <br/>
-			        <div tabIndex="0" className="form-login" role="document">
 				        <div className="form-login">
 					        <input
 					            type="text"
-					            name="user"
-					            className="login"
+					            className="inputbox"
 					            placeholder="Email or username"
-					            onChange={e => this.handleChange(e.target.name, e.target.value)}
+											ref={input => this.username = input}
 					        />
-					        <br/>
 					        <input
 					            type="password"
-					            name="pwd"
-					            className="login"
+					            className="inputbox"
 					            placeholder="Password"
-					            onChange={e => this.handleChange(e.target.name, e.target.value)}
+											ref={input => this.password = input}
 					        />
-					        <br/>
-					       	<br/>
 					        <button
-					            className="loginBtn button"
-					            onClick={ this.handleLogin } type='primary'>Log in</button>
-					        <br/>
-					        <br/>
+					          	className="loginBtn button"
+					            onClick={ () => this.props.login({user:this.username.value, pwd:this.password.value}) } type='primary'>Log in</button>
 
 					        <p className="header-login">Don't have an account?</p>
 					        <button
 					            className="signupBtn"
 					            id="signup-button"
-					            onClick={ this.register } style={{'font-family':'Proxima Nova'}}
-					        >Sign up</button>
-
-				        </div>
+					            onClick={ () => this.props.history.push('/register') } style={{'font-family':'Proxima Nova'}}>Sign up
+									</button>
 			        </div>
 			        {this.props.msg?<p className='error-msg'>{this.props.msg}</p>:null}
-
 			    </section>
-					<div className='login-content'>
-					</div>
-
 			</div>
 		)
 	}

@@ -163,10 +163,10 @@ body {
   border-color: rgba(0,0,0,0)
 }
 
-button{
-  font: 20px 'Proxima Nova', sans-serif;
+.button{
+  font: 15px 'Proxima Nova', sans-serif;
   border: 2px rgba(0, 135, 235, 1) solid;
-  border-radius: 40px;
+  border-radius: 10px;
   color: rgba(0, 135, 235, 1);
   padding-top: 5px;
   padding-bottom: 5px;
@@ -175,35 +175,13 @@ button{
   background-color: rgba(0,135,235,0);
   transition: background-color 0.15s, color 0.125s, font-size 0.125s;
   cursor: pointer;
-  width: 70%;
+  width: 245px;
 }
 
 .button:hover {
-  font: 20px 'Proxima Nova', sans-serif;
-  border: 3px rgba(0, 135, 235, 1) solid;
-  border-radius: 40px;
   color: white;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 15px;
-  padding-right:15px;
   background-color: rgba(0,135,235,1);
 }
-
-.button{
-  font: 15px 'Proxima Nova', sans-serif;
-  border: 2rpx rgba(0, 135, 235, 1) solid;
-  border-radius: 40px;
-  color: rgba(0, 135, 235, 1);
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 15px;
-  padding-right:15px;
-  background-color: rgba(0,135,235,0);
-  transition: background-color 0.125s, color 0.125s, font-size 0.125s, border 0.125s;
-  cursor: pointer;
-}
-
 .am-modal{
   font-family: 'Proxima Nova';
 }
@@ -215,9 +193,5 @@ button{
 
 .login, .signup{
   font-family: 'Proxima Nova';
-  text-align: center;
-}
-input{
-  border-radius: 40px;
   text-align: center;
 }
